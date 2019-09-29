@@ -6,24 +6,44 @@
  */
 
 #include "algorithm/gift_wrapping.hpp"
+#include <math.h>
 
 
 std::vector <Point> GiftWrappingAlgorithm::FindHull(const std::vector <Point> points) {
-	PointVectorBuilder b;
+	std::vector <Point> hull;
 
-	if (points.empty()){
-		return b.build();
+	if (points.size() < 4){
+		for (Point p : points){
+			hull.push_back(p);
+		}
+		return hull;
 	}
 
-	Point pointOnHull = findLeftMostPoint(points);
-	b.addPoint(pointOnHull);
+	Point point_on_hull = findLeftMostPoint(points);
 
-	for (Point p : points){
-		b.addPoint(p);
-	}
+	int i = 0;
+	Point endpoint;
+	Point candidate;
+
+	do {
+		hull.push_back(point_on_hull);
+		endpoint = points[0];
+
+		Vector2D line = Vector2D(hull[i], endpoint);
+		for (int j = 1; j < points.size(); ++j){
+			candidate = points[j];
+			Vector2D candidate_line = Vector2D(point_on_hull, candidate);
+			if ((endpoint == point_on_hull) or (line.CalculateTurnAngle(candidate_line) < M_PI)){
+				endpoint = candidate;
+			};
+		}
+		++i;
+		point_on_hull = endpoint;
+	} while (!(hull[0] == endpoint));
 
 
-	return b.build();
+
+	return hull;
 };
 
 Point GiftWrappingAlgorithm::findLeftMostPoint(const std::vector <Point> points){
