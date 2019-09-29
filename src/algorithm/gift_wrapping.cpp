@@ -35,6 +35,7 @@ std::vector <Point2D> GiftWrappingAlgorithm::FindHull(const std::vector <Point2D
 			if (candidate == point_on_hull or candidate == endpoint or point_on_hull == endpoint) {
 				continue;
 			}
+
 			Vector2D candidate_line = Vector2D(point_on_hull, candidate);
 			if (line.CalculateTurnAngle(candidate_line) < M_PI){
 				endpoint = candidate;

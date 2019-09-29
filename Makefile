@@ -10,10 +10,10 @@ help:
 	@echo Help
 
 unit:
-	test_point
+	test_geometry
 	test_gift_wrapping
 
-test_point:
+test_geometry:
 	$(CC) test/test_geometry.cpp -o $(TEST_DEST)/test_geometry \
 	-I$(INCLUDE) -I$(CTESTIE_DIR) $(TEST_FLAGS)	
 	$(TEST_DEST)/test_geometry
