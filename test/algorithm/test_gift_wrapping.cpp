@@ -15,8 +15,9 @@ TEST test_FindHull_EmptyVectorPassed_ReturnsEmptyList(){
 	ASSERT(hull.empty(), "Fail.");
 }
 
-TEST testFindHull_OneElement_HullContainsOneElement(){
+TEST test_FindHull_OneElement_HullContainsOneElement(){
 	Point p = Point(1., 2.);
+
 	PointVectorBuilder b;
 	b.addPoint(p);
 
@@ -25,9 +26,10 @@ TEST testFindHull_OneElement_HullContainsOneElement(){
 	ASSERT(hull.size() == 1, "Fail.");
 }
 
-TEST testFindHull_TwoElements_HullContainsTwoElements(){
+TEST test_FindHull_TwoElements_HullContainsTwoElements(){
 	Point p1 = Point(1., 2.);
 	Point p2 = Point(2., 2.);
+
 	PointVectorBuilder b;
 	b.addPoint(p1);
 	b.addPoint(p2);
@@ -37,10 +39,11 @@ TEST testFindHull_TwoElements_HullContainsTwoElements(){
 	ASSERT(hull.size() == 2, "Fail.");
 }
 
-TEST testFindHull_ThreeElements_HullContainsThreeElements(){
+TEST test_FindHull_ThreeElements_HullContainsThreeElements(){
 	Point p1 = Point(1., 2.);
 	Point p2 = Point(2., 2.);
 	Point p3 = Point(2., 3.);
+
 	PointVectorBuilder b;
 	b.addPoint(p1);
 	b.addPoint(p2);
@@ -51,7 +54,7 @@ TEST testFindHull_ThreeElements_HullContainsThreeElements(){
 	ASSERT(hull.size() == 3, "Fail.");
 }
 
-TEST testFindHull_AllElementsOnAHull_HullContainsAllElements(){
+TEST test_FindHull_AllElementsOnAHull_HullContainsAllElements(){
 	Point p1 = Point(0., 0.);
 	Point p2 = Point(1., 0.);
 	Point p3 = Point(2., 1.);
@@ -70,7 +73,7 @@ TEST testFindHull_AllElementsOnAHull_HullContainsAllElements(){
 	ASSERT(hull.size() == 5, "Fail.");
 }
 
-TEST testFindHull_OneElementInsideull_HullSizeIsLessThanPointsSizeByOne(){
+TEST test_FindHull_OneElementInsideull_HullSizeIsLessThanPointsSizeByOne(){
 	Point p1 = Point(0., 0.);
 	Point p2 = Point(2., 0.);
 	Point p3 = Point(2., 2.);
@@ -92,9 +95,9 @@ TEST testFindHull_OneElementInsideull_HullSizeIsLessThanPointsSizeByOne(){
 
 RUN(
 		test_FindHull_EmptyVectorPassed_ReturnsEmptyList,
-		testFindHull_OneElement_HullContainsOneElement,
-		testFindHull_TwoElements_HullContainsTwoElements,
-		testFindHull_ThreeElements_HullContainsThreeElements,
-		testFindHull_AllElementsOnAHull_HullContainsAllElements,
-		testFindHull_OneElementInsideull_HullSizeIsLessThanPointsSizeByOne
+		test_FindHull_OneElement_HullContainsOneElement,
+		test_FindHull_TwoElements_HullContainsTwoElements,
+		test_FindHull_ThreeElements_HullContainsThreeElements,
+		test_FindHull_AllElementsOnAHull_HullContainsAllElements,
+		test_FindHull_OneElementInsideull_HullSizeIsLessThanPointsSizeByOne
 );

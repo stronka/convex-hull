@@ -9,7 +9,7 @@
 #define INCLUDE_POINT_HPP_
 
 #include <vector>
-
+#include <iostream>
 
 class Point {
 
@@ -24,7 +24,10 @@ public:
 	double GetX() const;
 	double GetY() const;
 
+	double GetDistance(Point const &other) const;
+
 	bool operator==(Point &other) const;
+	friend std::ostream &operator<<(std::ostream &stream, const Point &p);
 };
 
 
@@ -33,9 +36,23 @@ private:
 	std::vector <Point> points;
 
 public:
+	void reset();
 	void addPoint(Point &p);
 	std::vector <Point> build() const;
 };
 
+
+class Vector2D {
+private:
+	Point begin;
+	Point end;
+
+public:
+	Vector2D(Point begin, Point end): begin(begin), end(end){};
+	double CalculateTurnAngle(Vector2D &other) const;
+	double CalculateLength() const;
+	double CalculateXComponent() const;
+	double CalculateYComponent() const;
+};
 
 #endif /* INCLUDE_POINT_HPP_ */

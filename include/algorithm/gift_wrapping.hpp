@@ -16,6 +16,8 @@ class GiftWrappingAlgorithm {
 public:
 	static std::vector <Point> FindHull(const std::vector <Point> points);
 
+private:
+	static Point findLeftMostPoint(const std::vector <Point> points);
 };
 
 #endif /* INCLUDE_ALGORITHM_GIFT_WRAPPING_HPP_ */
