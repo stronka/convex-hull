@@ -8,8 +8,13 @@
 #include "algorithm/gift_wrapping.hpp"
 
 
-std::list <Point> GiftWrappingAlgorithm::FindHull(const std::list <Point> points) const {
-	std::list <Point> hull;
+std::vector <Point> GiftWrappingAlgorithm::FindHull(const std::vector <Point> points) {
+	PointVectorBuilder b;
 
-	return hull;
+	for (Point p : points){
+		b.addPoint(p);
+	}
+
+
+	return b.build();
 };

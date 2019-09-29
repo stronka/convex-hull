@@ -33,8 +33,6 @@ private:
 	std::vector <Point> points;
 
 public:
-	PointVectorBuilder(){};
-
 	void addPoint(Point &p);
 	std::vector <Point> build() const;
 };

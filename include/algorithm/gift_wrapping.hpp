@@ -8,14 +8,13 @@
 #ifndef INCLUDE_ALGORITHM_GIFT_WRAPPING_HPP_
 #define INCLUDE_ALGORITHM_GIFT_WRAPPING_HPP_
 
-#include <list>
+#include <vector>
 #include "point.hpp"
 
 class GiftWrappingAlgorithm {
 
 public:
-	GiftWrappingAlgorithm(){};
-	std::list <Point> FindHull(const std::list <Point> points) const;
+	static std::vector <Point> FindHull(const std::vector <Point> points);
 
 };
 
