@@ -5,43 +5,44 @@
  *      Author: Krzysztof
  */
 
-#include "point.hpp"
+#include "../include/geometry.hpp"
+
 #include <math.h>
 
-double Point::GetX() const {
+double Point2D::GetX() const {
 	return x;
 }
 
-double Point::GetY() const {
+double Point2D::GetY() const {
 	return y;
 }
 
 
-double Point::GetDistance(Point const &other) const {
+double Point2D::GetDistance(Point2D const &other) const {
 	return pow(pow(x - other.GetX(), 2) + pow(y - other.GetY(), 2) , .5);
 };
 
-std::ostream &operator<<(std::ostream &stream, const Point &p){
+std::ostream &operator<<(std::ostream &stream, const Point2D &p){
 	stream << "Point (" << p.GetX() << ", " << p.GetY() << ")" << std::endl;
 	return stream;
 
 };
 
-bool Point::operator==(Point &other) const {
+bool Point2D::operator==(Point2D &other) const {
 	return x == other.GetX() && y == other.GetY();
 }
 
 
-void PointVectorBuilder::reset(){
-	std::vector <Point> new_vector;
+void PointVectorBuilder::Reset(){
+	std::vector <Point2D> new_vector;
 	points = new_vector;
 };
 
-void PointVectorBuilder::addPoint(Point &p){
+void PointVectorBuilder::AddPoint(Point2D &p){
 	points.push_back(p);
 };
 
-std::vector <Point> PointVectorBuilder::build() const {
+std::vector <Point2D> PointVectorBuilder::build() const {
 	return points;
 }
 
@@ -65,19 +66,8 @@ double Vector2D::CalculateXComponent() const {
 double Vector2D::CalculateYComponent() const {
 	return end.GetY() - begin.GetY();
 }
-//
-//double PointVectorCalculator::calculateVectorLength(std::vector <Point> &v) {
-//	return v[0].GetDistance(v[1]);
-//}
-//
-//double PointVectorCalculator::getXComponent(std::vector <Point> &v){
-//	return v[1].GetX() - v[0].GetX();
-//};
-//
-//double PointVectorCalculator::getYComponent(std::vector <Point> &v){
-//	return v[1].GetY() - v[0].GetY();
-//}
 
-//double PointVectorCalculator::calculateTurnAngle(std::vector <Point> &v1, std::vector <Point> &v2){
-//	return asin();
-//}
+std::ostream &operator<<(std::ostream &stream, const Vector2D &v){
+	std::cout << "Vector: "<< std::endl << v.begin << v.end;
+	return stream;
+}
