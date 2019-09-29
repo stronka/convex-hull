@@ -15,3 +15,18 @@ double Point::GetX() const {
 double Point::GetY() const {
 	return y;
 }
+
+
+bool Point::operator==(Point &other) const {
+	return x == other.GetX() && y == other.GetY();
+}
+
+
+void PointVectorBuilder::addPoint(Point &p){
+	points.push_back(p);
+};
+
+std::vector <Point> PointVectorBuilder::build() const {
+	return points;
+}
+

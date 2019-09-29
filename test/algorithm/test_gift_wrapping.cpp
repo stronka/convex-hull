@@ -5,12 +5,23 @@
  *      Author: Krzysztof
  */
 #include "ctestie.h"
+#include "../src/algorithm/gift_wrapping.cpp"
 
-TEST test_sentinel(){
-	ASSERT(false, "Fail.");
+TEST test_CreateAlgorithm_Always_ReturnsAlgorithm(){
+	GiftWrappingAlgorithm algorithm = GiftWrappingAlgorithm();
+	ASSERT(true, "Fail.");
 }
 
+TEST test_FindHull_EmptyListPassed_ReturnsEmptyList(){
+	GiftWrappingAlgorithm algorithm = GiftWrappingAlgorithm();
+
+	std::list <Point> points;
+	std::list <Point> hull = algorithm.FindHull(points);
+
+	ASSERT(hull.empty(), "Fail.");
+}
 
 RUN(
-		test_sentinel
+		test_CreateAlgorithm_Always_ReturnsAlgorithm,
+		test_FindHull_EmptyListPassed_ReturnsEmptyList
 );

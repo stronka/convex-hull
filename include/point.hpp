@@ -8,6 +8,9 @@
 #ifndef INCLUDE_POINT_HPP_
 #define INCLUDE_POINT_HPP_
 
+#include <vector>
+
+
 class Point {
 
 private:
@@ -20,6 +23,20 @@ public:
 
 	double GetX() const;
 	double GetY() const;
+
+	bool operator==(Point &other) const;
+};
+
+
+class PointVectorBuilder {
+private:
+	std::vector <Point> points;
+
+public:
+	PointVectorBuilder(){};
+
+	void addPoint(Point &p);
+	std::vector <Point> build() const;
 };
 
 
