@@ -18,6 +18,7 @@ public:
 	static std::vector <Point2D> FindHull(const std::vector <Point2D> &points);
 
 private:
+	static bool IsDegeneratedCase(const std::vector<Point2D> &points);
 	static Point2D FindLeftMostPoint(const std::vector <Point2D> &points);
 	static Point2D ChooseFirstEndpoint(const Point2D &point_on_hull, const std::vector<Point2D> &points);
 	static Point2D ScanCandidates(const Point2D &point_on_hull, Point2D &endpoint, const std::vector<Point2D> &points);

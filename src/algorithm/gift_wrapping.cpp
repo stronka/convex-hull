@@ -11,15 +11,11 @@
 
 
 std::vector <Point2D> GiftWrappingAlgorithm::FindHull(const std::vector <Point2D> &points) {
-	std::vector <Point2D> hull;
-
-	if (points.size() < 4){
-		for (Point2D p : points){
-			hull.push_back(p);
-		}
-		return hull;
+	if (IsDegeneratedCase(points)) {
+		return points;
 	}
 
+	std::vector <Point2D> hull;
 	Point2D point_on_hull = FindLeftMostPoint(points);
 
 	do {
@@ -30,6 +26,10 @@ std::vector <Point2D> GiftWrappingAlgorithm::FindHull(const std::vector <Point2D
 
 	return hull;
 };
+
+bool GiftWrappingAlgorithm::IsDegeneratedCase( const std::vector<Point2D> &points) {
+	return points.size() < 3;
+}
 
 Point2D GiftWrappingAlgorithm::FindLeftMostPoint(const std::vector <Point2D> &points) {
 	Point2D left = points[0];
