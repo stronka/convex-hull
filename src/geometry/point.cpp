@@ -29,9 +29,12 @@ std::ostream &operator<<(std::ostream &stream, const Point2D &p){
 };
 
 bool Point2D::operator==(Point2D &other) const {
-	return x == other.GetX() && y == other.GetY();
+	return x == other.GetX() and y == other.GetY();
 }
 
+bool Point2D::operator!=(Point2D &other) const {
+	return x != other.GetX() or y != other.GetY();
+}
 
 void PointVectorBuilder::Reset(){
 	std::vector <Point2D> new_vector;

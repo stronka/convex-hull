@@ -35,6 +35,27 @@ TEST test_PointEquals_PointsNotTheSame_ReturnFalse(){
 	ASSERT(!(p1 == p2), "Fail.");
 }
 
+TEST test_PointNotEquals_PointsNotTheSame_ReturnTrue(){
+	Point2D p1 = Point2D(1., 2.);
+	Point2D p2 = Point2D(2., 4.);
+
+	ASSERT(p1 != p2, "Fail.");
+}
+
+TEST test_PointNotEquals_PointsTheSame_ReturnFalse(){
+	Point2D p1 = Point2D(1., 2.);
+	Point2D p2 = Point2D(1., 2.);
+
+	ASSERT(!(p1 != p2), "Fail.");
+}
+
+TEST test_PointNotEquals_PointsXTheSame_ReturnTrue(){
+	Point2D p1 = Point2D(1., 2.);
+	Point2D p2 = Point2D(1., 3.);
+
+	ASSERT((p1 != p2), "Fail.");
+}
+
 TEST test_PointVectorBuilder_Always_ReturnInstance(){
 	PointVectorBuilder b = PointVectorBuilder();
 	ASSERT(true, "Fail");
@@ -90,6 +111,9 @@ RUN(
 		test_Point_GetY_ReturnsY,
 		test_PointEquals_PointsTheSame_ReturnTrue,
 		test_PointEquals_PointsNotTheSame_ReturnFalse,
+		test_PointNotEquals_PointsNotTheSame_ReturnTrue,
+		test_PointNotEquals_PointsTheSame_ReturnFalse,
+		test_PointNotEquals_PointsXTheSame_ReturnTrue,
 
 		test_PointVectorBuilder_Always_ReturnInstance,
 		test_PointVectorBuilderBuild_NoPoints_ReturnsEmptyList,

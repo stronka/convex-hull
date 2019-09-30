@@ -28,6 +28,7 @@ public:
 	double GetDistance(Point2D const &other) const;
 
 	bool operator==(Point2D &other) const;
+	bool operator!=(Point2D &other) const;
 	friend std::ostream &operator<<(std::ostream &stream, const Point2D &p);
 };
 
@@ -41,8 +42,6 @@ public:
 	void AddPoint(Point2D &p);
 	std::vector <Point2D> build() const;
 };
-
-
 
 
 #endif /* INCLUDE_GEOMETRY_HPP_ */
