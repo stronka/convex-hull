@@ -95,11 +95,67 @@ TEST test_FindHull_OneElementInsideull_HullSizeIsLessThanPointsSizeByOne(){
 	ASSERT(hull.size() == points.size() - 1, "Fail. Got %d, want %d", hull.size(), points.size() - 1);
 }
 
+TEST test_FindHull_ManyElementsInsideull_HullSizeIsCorrect(){
+	// hull points
+	Point2D p1 = Point2D(0., 0.);
+	Point2D p2 = Point2D(2., 0.);
+	Point2D p3 = Point2D(2., 2.);
+	Point2D p4 = Point2D(0., 2.);
+	//remaining points
+	Point2D p5 = Point2D(1., 1.);
+	Point2D p6 = Point2D(1., 1.1);
+	Point2D p7 = Point2D(1.1, 1.1);
+	Point2D p8 = Point2D(1.1, 1.);
+	Point2D p9 = Point2D(1.2, 1.);
+	Point2D p10 = Point2D(1.2, 1.2);
+
+	PointVectorBuilder b;
+	b.AddPoint(p1);
+	b.AddPoint(p2);
+	b.AddPoint(p3);
+	b.AddPoint(p4);
+	b.AddPoint(p5);
+	b.AddPoint(p6);
+	b.AddPoint(p7);
+	b.AddPoint(p8);
+	b.AddPoint(p9);
+	b.AddPoint(p10);
+
+	std::vector <Point2D> points = b.build();
+	std::vector <Point2D> hull = GiftWrappingAlgorithm::FindHull(points);
+
+	ASSERT(hull.size() == 4, "Fail. Got %d, want %d", hull.size(), 4);
+}
+
+TEST test_FindHull_FirstElementIsLeftmost_HullSizeIsCorrect(){
+	// hull points
+	Point2D p1 = Point2D(-1., 0.);
+	Point2D p2 = Point2D(2., 0.);
+	Point2D p3 = Point2D(2., 2.);
+	Point2D p4 = Point2D(0., 2.);
+	//remaining points
+	Point2D p5 = Point2D(1., 1.);
+
+	PointVectorBuilder b;
+	b.AddPoint(p1);
+	b.AddPoint(p2);
+	b.AddPoint(p3);
+	b.AddPoint(p4);
+	b.AddPoint(p5);
+
+	std::vector <Point2D> points = b.build();
+	std::vector <Point2D> hull = GiftWrappingAlgorithm::FindHull(points);
+
+	ASSERT(hull.size() == 4, "Fail. Got %d, want %d", hull.size(), 4);
+}
+
 RUN(
 		test_FindHull_EmptyVectorPassed_ReturnsEmptyList,
 		test_FindHull_OneElement_HullContainsOneElement,
 		test_FindHull_TwoElements_HullContainsTwoElements,
 		test_FindHull_ThreeElements_HullContainsThreeElements,
 		test_FindHull_AllElementsOnAHull_HullContainsAllElements,
-		test_FindHull_OneElementInsideull_HullSizeIsLessThanPointsSizeByOne
+		test_FindHull_OneElementInsideull_HullSizeIsLessThanPointsSizeByOne,
+		test_FindHull_ManyElementsInsideull_HullSizeIsCorrect,
+		test_FindHull_FirstElementIsLeftmost_HullSizeIsCorrect
 );
