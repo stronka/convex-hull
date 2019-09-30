@@ -16,10 +16,10 @@ public:
 	Point2D(double x, double y) : x(x), y(y){
 	};
 
-	double GetX() const;
-	double GetY() const;
+	double getX() const;
+	double getY() const;
 
-	double GetDistance(const Point2D &other) const;
+	double getDistance(const Point2D &other) const;
 
 	bool operator==(const Point2D &other) const;
 	bool operator!=(const Point2D &other) const;
@@ -32,8 +32,8 @@ private:
 	std::vector <Point2D> points;
 
 public:
-	void Reset();
-	void AddPoint(Point2D &p);
+	void reset();
+	void addPoint(Point2D &p);
 	std::vector <Point2D> build() const;
 };
 

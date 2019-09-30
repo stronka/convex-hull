@@ -1,25 +1,25 @@
 #include "geometry/vector.hpp"
 #include <math.h>
 
-double Vector2D::CalculateTurnAngle(const Vector2D &other) const {
-	double const length_product = CalculateLength() * other.CalculateLength();
+double Vector2D::calculateTurnAngle(const Vector2D &other) const {
+	double const length_product = calculateLength() * other.calculateLength();
 	double const component_products = \
-			CalculateXComponent()*other.CalculateYComponent() - \
-			other.CalculateXComponent()*CalculateYComponent();
+			calculateXComponent()*other.calculateYComponent() - \
+			other.calculateXComponent()*calculateYComponent();
 
 	return M_PI - asin(component_products/length_product);
 }
 
-double Vector2D::CalculateLength() const {
-	return begin.GetDistance(end);
+double Vector2D::calculateLength() const {
+	return begin.getDistance(end);
 }
 
-double Vector2D::CalculateXComponent() const {
-	return end.GetX() - begin.GetX();
+double Vector2D::calculateXComponent() const {
+	return end.getX() - begin.getX();
 }
 
-double Vector2D::CalculateYComponent() const {
-	return end.GetY() - begin.GetY();
+double Vector2D::calculateYComponent() const {
+	return end.getY() - begin.getY();
 }
 
 std::ostream &operator<<(std::ostream &stream, const Vector2D &v){

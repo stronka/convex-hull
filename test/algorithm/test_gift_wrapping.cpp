@@ -4,7 +4,7 @@
 
 TEST test_FindHull_EmptyVectorPassed_ReturnsEmptyList(){
 	std::vector <Point2D> points;
-	std::vector <Point2D> hull = GiftWrappingAlgorithm::FindHull(points);
+	std::vector <Point2D> hull = GiftWrappingAlgorithm::findHull(points);
 
 	ASSERT(hull.empty(), "Fail.");
 }
@@ -13,9 +13,9 @@ TEST test_FindHull_OneElement_HullContainsOneElement(){
 	Point2D p = Point2D(1., 2.);
 
 	PointVectorBuilder b;
-	b.AddPoint(p);
+	b.addPoint(p);
 
-	std::vector <Point2D> hull = GiftWrappingAlgorithm::FindHull(b.build());
+	std::vector <Point2D> hull = GiftWrappingAlgorithm::findHull(b.build());
 
 	ASSERT(hull.size() == 1, "Fail.");
 }
@@ -25,10 +25,10 @@ TEST test_FindHull_TwoElements_HullContainsTwoElements(){
 	Point2D p2 = Point2D(2., 2.);
 
 	PointVectorBuilder b;
-	b.AddPoint(p1);
-	b.AddPoint(p2);
+	b.addPoint(p1);
+	b.addPoint(p2);
 
-	std::vector <Point2D> hull = GiftWrappingAlgorithm::FindHull(b.build());
+	std::vector <Point2D> hull = GiftWrappingAlgorithm::findHull(b.build());
 
 	ASSERT(hull.size() == 2, "Fail.");
 }
@@ -39,11 +39,11 @@ TEST test_FindHull_ThreeElements_HullContainsThreeElements(){
 	Point2D p3 = Point2D(2., 3.);
 
 	PointVectorBuilder b;
-	b.AddPoint(p1);
-	b.AddPoint(p2);
-	b.AddPoint(p3);
+	b.addPoint(p1);
+	b.addPoint(p2);
+	b.addPoint(p3);
 
-	std::vector <Point2D> hull = GiftWrappingAlgorithm::FindHull(b.build());
+	std::vector <Point2D> hull = GiftWrappingAlgorithm::findHull(b.build());
 
 	ASSERT(hull.size() == 3, "Fail.");
 }
@@ -56,15 +56,15 @@ TEST test_FindHull_AllElementsOnAHull_HullContainsAllElements(){
 	Point2D p5 = Point2D(0., 2.);
 
 	PointVectorBuilder b;
-	b.AddPoint(p1);
-	b.AddPoint(p2);
-	b.AddPoint(p3);
-	b.AddPoint(p4);
-	b.AddPoint(p5);
+	b.addPoint(p1);
+	b.addPoint(p2);
+	b.addPoint(p3);
+	b.addPoint(p4);
+	b.addPoint(p5);
 
 
 	std::vector <Point2D> points = b.build();
-	std::vector <Point2D> hull = GiftWrappingAlgorithm::FindHull(points);
+	std::vector <Point2D> hull = GiftWrappingAlgorithm::findHull(points);
 
 	ASSERT(hull.size() == 5, "Fail. Got %d, want %d", hull.size(), points.size());
 }
@@ -77,14 +77,14 @@ TEST test_FindHull_OneElementInsideull_HullSizeIsLessThanPointsSizeByOne(){
 	Point2D p5 = Point2D(0., 2.);
 
 	PointVectorBuilder b;
-	b.AddPoint(p1);
-	b.AddPoint(p2);
-	b.AddPoint(p3);
-	b.AddPoint(p4);
-	b.AddPoint(p5);
+	b.addPoint(p1);
+	b.addPoint(p2);
+	b.addPoint(p3);
+	b.addPoint(p4);
+	b.addPoint(p5);
 
 	std::vector <Point2D> points = b.build();
-	std::vector <Point2D> hull = GiftWrappingAlgorithm::FindHull(points);
+	std::vector <Point2D> hull = GiftWrappingAlgorithm::findHull(points);
 
 	ASSERT(hull.size() == points.size() - 1, "Fail. Got %d, want %d", hull.size(), points.size() - 1);
 }
@@ -104,19 +104,19 @@ TEST test_FindHull_ManyElementsInsideull_HullSizeIsCorrect(){
 	Point2D p10 = Point2D(1.2, 1.2);
 
 	PointVectorBuilder b;
-	b.AddPoint(p1);
-	b.AddPoint(p2);
-	b.AddPoint(p3);
-	b.AddPoint(p4);
-	b.AddPoint(p5);
-	b.AddPoint(p6);
-	b.AddPoint(p7);
-	b.AddPoint(p8);
-	b.AddPoint(p9);
-	b.AddPoint(p10);
+	b.addPoint(p1);
+	b.addPoint(p2);
+	b.addPoint(p3);
+	b.addPoint(p4);
+	b.addPoint(p5);
+	b.addPoint(p6);
+	b.addPoint(p7);
+	b.addPoint(p8);
+	b.addPoint(p9);
+	b.addPoint(p10);
 
 	std::vector <Point2D> points = b.build();
-	std::vector <Point2D> hull = GiftWrappingAlgorithm::FindHull(points);
+	std::vector <Point2D> hull = GiftWrappingAlgorithm::findHull(points);
 
 	ASSERT(hull.size() == 4, "Fail. Got %d, want %d", hull.size(), 4);
 }
@@ -131,14 +131,14 @@ TEST test_FindHull_FirstElementIsLeftmost_HullSizeIsCorrect(){
 	Point2D p5 = Point2D(1., 1.);
 
 	PointVectorBuilder b;
-	b.AddPoint(p1);
-	b.AddPoint(p2);
-	b.AddPoint(p3);
-	b.AddPoint(p4);
-	b.AddPoint(p5);
+	b.addPoint(p1);
+	b.addPoint(p2);
+	b.addPoint(p3);
+	b.addPoint(p4);
+	b.addPoint(p5);
 
 	std::vector <Point2D> points = b.build();
-	std::vector <Point2D> hull = GiftWrappingAlgorithm::FindHull(points);
+	std::vector <Point2D> hull = GiftWrappingAlgorithm::findHull(points);
 
 	ASSERT(hull.size() == 4, "Fail. Got %d, want %d", hull.size(), 4);
 }

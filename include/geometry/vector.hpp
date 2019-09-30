@@ -12,10 +12,10 @@ private:
 public:
 	Vector2D(Point2D begin, Point2D end): begin(begin), end(end){};
 
-	double CalculateTurnAngle(const Vector2D &other) const;
-	double CalculateLength() const;
-	double CalculateXComponent() const;
-	double CalculateYComponent() const;
+	double calculateTurnAngle(const Vector2D &other) const;
+	double calculateLength() const;
+	double calculateXComponent() const;
+	double calculateYComponent() const;
 
 	friend std::ostream &operator<<(std::ostream &stream, const Vector2D &v);
 };

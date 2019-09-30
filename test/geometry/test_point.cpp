@@ -10,14 +10,14 @@ TEST test_Point_CreateFromCoords_ReturnPoint(){
 TEST test_Point_GetX_ReturnsX(){
 	Point2D p = Point2D(1., 2.);
 
-	double const x = p.GetX();
+	double const x = p.getX();
 	ASSERT(x == 1., "Fail.");
 }
 
 TEST test_Point_GetY_ReturnsY(){
 	Point2D p = Point2D(1., 2.);
 
-	double const y = p.GetY();
+	double const y = p.getY();
 	ASSERT(y == 2., "Fail.");
 }
 
@@ -71,7 +71,7 @@ TEST test_PointVectorBuilderBuild_NoPoints_ReturnsEmptyList(){
 TEST test_PointVectorBuilderBuild_AddPoint_PointAdded(){
 	PointVectorBuilder b = PointVectorBuilder();
 	Point2D p = Point2D(1., 2.);
-	b.AddPoint(p);
+	b.addPoint(p);
 
 	std::vector<Point2D> points = b.build();
 	ASSERT(points[0] == p, "Fail.");
@@ -81,10 +81,10 @@ TEST test_PointVectorBuilderBuild_AddPointFewTimes_VectorSizeIsCorrect(){
 	PointVectorBuilder b = PointVectorBuilder();
 	Point2D p = Point2D(1., 2.);
 
-	b.AddPoint(p);
-	b.AddPoint(p);
-	b.AddPoint(p);
-	b.AddPoint(p);
+	b.addPoint(p);
+	b.addPoint(p);
+	b.addPoint(p);
+	b.addPoint(p);
 
 	std::vector<Point2D> points = b.build();
 	ASSERT(points.size() == 4, "Fail.");
@@ -94,11 +94,11 @@ TEST test_PointVectorBuilderReset_AddPointFewTimes_VectorSizeIsEmpty(){
 	PointVectorBuilder b = PointVectorBuilder();
 	Point2D p = Point2D(1., 2.);
 
-	b.AddPoint(p);
-	b.AddPoint(p);
-	b.AddPoint(p);
-	b.AddPoint(p);
-	b.Reset();
+	b.addPoint(p);
+	b.addPoint(p);
+	b.addPoint(p);
+	b.addPoint(p);
+	b.reset();
 
 	std::vector<Point2D> points = b.build();
 	ASSERT(points.empty(), "Fail.");
