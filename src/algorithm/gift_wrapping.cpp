@@ -47,7 +47,7 @@ Point2D GiftWrappingAlgorithm::ScanCandidates(const Point2D &point_on_hull, Poin
 	for (Point2D candidate : points) {
 		Vector2D candidate_line = Vector2D(point_on_hull, candidate);
 
-		if (IsCandidateOnLeftOffLine(line, candidate_line)) {
+		if (IsCandidateOnLeftOfLine(line, candidate_line)) {
 			endpoint = candidate;
 			line = candidate_line;
 		}
@@ -56,6 +56,6 @@ Point2D GiftWrappingAlgorithm::ScanCandidates(const Point2D &point_on_hull, Poin
 	return endpoint;
 }
 
-bool GiftWrappingAlgorithm::IsCandidateOnLeftOffLine(const Vector2D &line, const Vector2D &candidate_line) {
+bool GiftWrappingAlgorithm::IsCandidateOnLeftOfLine(const Vector2D &line, const Vector2D &candidate_line) {
 	return line.CalculateTurnAngle(candidate_line) < M_PI;
 }
