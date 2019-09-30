@@ -143,6 +143,37 @@ TEST test_FindHull_FirstElementIsLeftmost_HullSizeIsCorrect(){
 	ASSERT(hull.size() == 4, "Fail. Got %d, want %d", hull.size(), 4);
 }
 
+TEST test_FindHull_FirstElementIsLeftmost_HullIsCorrect(){
+	// hull points
+	Point2D p1 = Point2D(-1., 0.);
+	Point2D p2 = Point2D(2., 0.);
+	Point2D p3 = Point2D(2., 2.);
+	Point2D p4 = Point2D(0., 2.);
+	//remaining points
+	Point2D p5 = Point2D(1., 1.);
+
+	PointVectorBuilder b;
+
+	b.addPoint(p1);
+	b.addPoint(p2);
+	b.addPoint(p3);
+	b.addPoint(p4);
+	b.addPoint(p5);
+
+	std::vector <Point2D> points = b.build();
+
+	b.reset();
+	b.addPoint(p1);
+	b.addPoint(p2);
+	b.addPoint(p3);
+	b.addPoint(p4);
+
+	std::vector <Point2D> expected = b.build();
+	std::vector <Point2D> hull = GiftWrappingAlgorithm::findHull(points);
+
+	ASSERT(hull == expected, "Fail.");
+}
+
 RUN(
 		test_FindHull_EmptyVectorPassed_ReturnsEmptyList,
 		test_FindHull_OneElement_HullContainsOneElement,
@@ -151,5 +182,6 @@ RUN(
 		test_FindHull_AllElementsOnAHull_HullContainsAllElements,
 		test_FindHull_OneElementInsideull_HullSizeIsLessThanPointsSizeByOne,
 		test_FindHull_ManyElementsInsideull_HullSizeIsCorrect,
-		test_FindHull_FirstElementIsLeftmost_HullSizeIsCorrect
+		test_FindHull_FirstElementIsLeftmost_HullSizeIsCorrect,
+		test_FindHull_FirstElementIsLeftmost_HullIsCorrect
 );
