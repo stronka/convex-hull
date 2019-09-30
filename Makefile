@@ -14,7 +14,7 @@ unit:
 	test_gift_wrapping
 
 test_geometry:
-	$(CC) test/test_geometry.cpp -o $(TEST_DEST)/test_geometry \
+	$(CC) test/geometry/test_geometry.cpp -o $(TEST_DEST)/test_geometry \
 	-I$(INCLUDE) -I$(CTESTIE_DIR) $(TEST_FLAGS)	
 	$(TEST_DEST)/test_geometry
 

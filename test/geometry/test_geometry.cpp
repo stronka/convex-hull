@@ -1,6 +1,6 @@
 #include "ctestie.h"
 
-#include "../src/geometry.cpp"
+#include "../src/geometry/geometry.cpp"
 
 TEST test_Point_CreateFromCoords_ReturnPoint(){
 	Point2D p = Point2D(1., 2.);
