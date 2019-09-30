@@ -1,12 +1,5 @@
-/*
- * point.hpp
- *
- *  Created on: 29 wrz 2019
- *      Author: Krzysztof
- */
-
-#ifndef INCLUDE_GEOMETRY_HPP_
-#define INCLUDE_GEOMETRY_HPP_
+#ifndef INCLUDE_GEOMETRY_POINT_HPP_
+#define INCLUDE_GEOMETRY_POINT_HPP_
 
 #include <vector>
 #include <iostream>
@@ -45,4 +38,4 @@ public:
 };
 
 
-#endif /* INCLUDE_GEOMETRY_HPP_ */
+#endif /* INCLUDE_GEOMETRY_POINT_HPP_ */

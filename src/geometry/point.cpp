@@ -1,10 +1,3 @@
-/*
- * point.cpp
- *
- *  Created on: 29 wrz 2019
- *      Author: Krzysztof
- */
-
 #include "../../include/geometry/point.hpp"
 #include <math.h>
 

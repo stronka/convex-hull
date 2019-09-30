@@ -1,10 +1,3 @@
-/*
- * vector.cpp
- *
- *  Created on: 30 wrz 2019
- *      Author: Krzysztof
- */
-
 #include "geometry/vector.hpp"
 #include <math.h>
 

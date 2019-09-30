@@ -1,12 +1,5 @@
-/*
- * vector.hpp
- *
- *  Created on: 30 wrz 2019
- *      Author: Krzysztof
- */
-
-#ifndef SRC_GEOMETRY_VECTOR_HPP_
-#define SRC_GEOMETRY_VECTOR_HPP_
+#ifndef INCLUDE_GEOMETRY_POINT_HPP_
+#define INCLUDE_GEOMETRY_POINT_HPP_
 
 #include <iostream>
 #include "point.hpp"
@@ -27,4 +20,4 @@ public:
 };
 
 
-#endif /* SRC_GEOMETRY_VECTOR_HPP_ */
+#endif /* INCLUDE_GEOMETRY_POINT_HPP_ */

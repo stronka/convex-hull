@@ -1,10 +1,3 @@
-/*
- * gift_wrapping.hpp
- *
- *  Created on: 29 wrz 2019
- *      Author: Krzysztof
- */
-
 #ifndef INCLUDE_ALGORITHM_GIFT_WRAPPING_HPP_
 #define INCLUDE_ALGORITHM_GIFT_WRAPPING_HPP_
 

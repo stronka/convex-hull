@@ -1,10 +1,3 @@
-/*
- * gift_wrapping.cpp
- *
- *  Created on: 29 wrz 2019
- *      Author: Krzysztof
- */
-
 #include "algorithm/gift_wrapping.hpp"
 #include <math.h>
 
