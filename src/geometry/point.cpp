@@ -17,15 +17,15 @@ double Point2D::GetY() const {
 	return y;
 }
 
-double Point2D::GetDistance(Point2D const &other) const {
+double Point2D::GetDistance(const Point2D &other) const {
 	return pow(pow(x - other.GetX(), 2) + pow(y - other.GetY(), 2) , .5);
 };
 
-bool Point2D::operator==(Point2D const &other) const {
+bool Point2D::operator==(const Point2D &other) const {
 	return x == other.GetX() and y == other.GetY();
 }
 
-bool Point2D::operator!=(Point2D const &other) const {
+bool Point2D::operator!=(const Point2D &other) const {
 	return x != other.GetX() or y != other.GetY();
 }
 

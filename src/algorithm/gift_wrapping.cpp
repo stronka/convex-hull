@@ -53,6 +53,7 @@ Point2D GiftWrappingAlgorithm::ScanCandidates(const Point2D &point_on_hull, Poin
 
 	for (Point2D candidate : points) {
 		Vector2D candidate_line = Vector2D(point_on_hull, candidate);
+
 		if (IsCandidateOnLeftOffLine(line, candidate_line)) {
 			endpoint = candidate;
 			line = candidate_line;

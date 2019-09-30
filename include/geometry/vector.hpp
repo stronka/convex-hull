@@ -18,7 +18,7 @@ private:
 
 public:
 	Vector2D(Point2D begin, Point2D end): begin(begin), end(end){};
-	double CalculateTurnAngle(Vector2D const &other) const;
+	double CalculateTurnAngle(const Vector2D &other) const;
 	double CalculateLength() const;
 	double CalculateXComponent() const;
 	double CalculateYComponent() const;

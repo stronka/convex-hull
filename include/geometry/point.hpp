@@ -26,10 +26,10 @@ public:
 	double GetX() const;
 	double GetY() const;
 
-	double GetDistance(Point2D const &other) const;
+	double GetDistance(const Point2D &other) const;
 
-	bool operator==(Point2D const &other) const;
-	bool operator!=(Point2D const &other) const;
+	bool operator==(const Point2D &other) const;
+	bool operator!=(const Point2D &other) const;
 	friend std::ostream &operator<<(std::ostream &stream, const Point2D &p);
 };
 
