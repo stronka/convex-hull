@@ -8,7 +8,7 @@
 #ifndef SRC_GEOMETRY_VECTOR_HPP_
 #define SRC_GEOMETRY_VECTOR_HPP_
 
-#include "geometry.hpp"
+#include "geometry/geometry.hpp"
 #include <iostream>
 
 class Vector2D {

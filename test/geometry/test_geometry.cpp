@@ -83,31 +83,6 @@ TEST test_PointVectorBuilderReset_AddPointFewTimes_VectorSizeIsEmpty(){
 	ASSERT(points.empty(), "Fail.");
 }
 
-TEST test_PointVectorCalculatorCalculateTurnAngle_CaseColinearVectors_ReturnPi(){
-	Point2D p1 = Point2D(0., 0.);
-	Point2D p2 = Point2D(0., 1.);
-	Point2D p3 = Point2D(0., 2.);
-
-	Vector2D v1 = Vector2D(p1, p2);
-	Vector2D v2 = Vector2D(p2, p3);
-
-	double angle = v1.CalculateTurnAngle(v2);
-
-	ASSERT(angle == M_PI, "Fail. Got %2.4f, want %2.4f", angle, M_PI);
-}
-
-TEST test_PointVectorCalculatorCalculateTurnAngle_CaseVectorsAtRightAngle_ReturnPiTimesOneAndAHalf(){
-	Point2D p1 = Point2D(0., 0.);
-	Point2D p2 = Point2D(0., 1.);
-	Point2D p3 = Point2D(1., 1.);
-
-	Vector2D v1 = Vector2D(p1, p2);
-	Vector2D v2 = Vector2D(p2, p3);
-
-	double angle = v1.CalculateTurnAngle(v2);
-
-	ASSERT(angle == 1.5*M_PI, "Fail. Got %2.4f, want %2.4f", angle, 1.5*M_PI);
-}
 
 RUN(
 		test_Point_CreateFromCoords_ReturnPoint,
@@ -120,8 +95,5 @@ RUN(
 		test_PointVectorBuilderBuild_NoPoints_ReturnsEmptyList,
 		test_PointVectorBuilderBuild_AddPoint_PointAdded,
 		test_PointVectorBuilderBuild_AddPointFewTimes_VectorSizeIsCorrect,
-		test_PointVectorBuilderReset_AddPointFewTimes_VectorSizeIsEmpty,
-
-		test_PointVectorCalculatorCalculateTurnAngle_CaseColinearVectors_ReturnPi,
-		test_PointVectorCalculatorCalculateTurnAngle_CaseVectorsAtRightAngle_ReturnPiTimesOneAndAHalf
+		test_PointVectorBuilderReset_AddPointFewTimes_VectorSizeIsEmpty
 );

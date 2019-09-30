@@ -5,7 +5,7 @@
  *      Author: Krzysztof
  */
 
-#include "../include/geometry.hpp"
+#include "geometry/geometry.hpp"
 
 #include <math.h>
 
@@ -44,30 +44,4 @@ void PointVectorBuilder::AddPoint(Point2D &p){
 
 std::vector <Point2D> PointVectorBuilder::build() const {
 	return points;
-}
-
-double Vector2D::CalculateTurnAngle(Vector2D &other) const {
-	double const length_product = CalculateLength() * other.CalculateLength();
-	double const component_products = \
-			CalculateXComponent()*other.CalculateYComponent() - \
-			other.CalculateXComponent()*CalculateYComponent();
-
-	return M_PI - asin(component_products/length_product);
-}
-
-double Vector2D::CalculateLength() const {
-	return begin.GetDistance(end);
-}
-
-double Vector2D::CalculateXComponent() const {
-	return end.GetX() - begin.GetX();
-}
-
-double Vector2D::CalculateYComponent() const {
-	return end.GetY() - begin.GetY();
-}
-
-std::ostream &operator<<(std::ostream &stream, const Vector2D &v){
-	std::cout << "Vector: "<< std::endl << v.begin << v.end;
-	return stream;
 }
