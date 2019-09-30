@@ -9,7 +9,7 @@
 #define INCLUDE_ALGORITHM_GIFT_WRAPPING_HPP_
 
 #include <vector>
-#include "geometry.hpp"
+#include "geometry/geometry.hpp"
 
 class GiftWrappingAlgorithm {
 

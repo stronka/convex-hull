@@ -6,6 +6,7 @@
  */
 
 #include "algorithm/gift_wrapping.hpp"
+#include "geometry/vector.hpp"
 #include <math.h>
 
 

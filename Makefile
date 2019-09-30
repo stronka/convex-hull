@@ -18,8 +18,14 @@ test_geometry:
 	-I$(INCLUDE) -I$(CTESTIE_DIR) $(TEST_FLAGS)	
 	$(TEST_DEST)/test_geometry
 
+test_vector:
+	$(CC) test/geometry/test_vector.cpp src/geometry/geometry.cpp\
+	-o $(TEST_DEST)/test_vector \
+	-I$(INCLUDE) -I$(CTESTIE_DIR) $(TEST_FLAGS)	
+	$(TEST_DEST)/test_vector
+
 test_gift_wrapping:
-	$(CC) test/algorithm/test_gift_wrapping.cpp src/geometry.cpp \
+	$(CC) test/algorithm/test_gift_wrapping.cpp src/geometry/geometry.cpp src/geometry/vector.cpp \
 	-o $(TEST_DEST)/test_gift_wrapping \
 	-I$(INCLUDE) -I$(CTESTIE_DIR) $(TEST_FLAGS)	
 	$(TEST_DEST)/test_gift_wrapping
