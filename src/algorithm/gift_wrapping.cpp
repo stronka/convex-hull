@@ -10,7 +10,7 @@
 #include <math.h>
 
 
-std::vector <Point2D> GiftWrappingAlgorithm::FindHull(const std::vector <Point2D> points) {
+std::vector <Point2D> GiftWrappingAlgorithm::FindHull(const std::vector <Point2D> &points) {
 	std::vector <Point2D> hull;
 
 	if (points.size() < 4){
@@ -31,7 +31,7 @@ std::vector <Point2D> GiftWrappingAlgorithm::FindHull(const std::vector <Point2D
 	return hull;
 };
 
-Point2D GiftWrappingAlgorithm::FindLeftMostPoint(const std::vector <Point2D> points) {
+Point2D GiftWrappingAlgorithm::FindLeftMostPoint(const std::vector <Point2D> &points) {
 	Point2D left = points[0];
 	for (Point2D const &p : points){
 		if (p.GetX() < left.GetX()){
