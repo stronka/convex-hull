@@ -8,7 +8,7 @@
 #include "geometry/vector.hpp"
 #include <math.h>
 
-double Vector2D::CalculateTurnAngle(Vector2D &other) const {
+double Vector2D::CalculateTurnAngle(Vector2D const &other) const {
 	double const length_product = CalculateLength() * other.CalculateLength();
 	double const component_products = \
 			CalculateXComponent()*other.CalculateYComponent() - \

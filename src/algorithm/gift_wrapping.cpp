@@ -6,7 +6,6 @@
  */
 
 #include "algorithm/gift_wrapping.hpp"
-#include "geometry/vector.hpp"
 #include <math.h>
 
 
@@ -54,11 +53,15 @@ Point2D GiftWrappingAlgorithm::ScanCandidates(const Point2D &point_on_hull, Poin
 
 	for (Point2D candidate : points) {
 		Vector2D candidate_line = Vector2D(point_on_hull, candidate);
-		if (line.CalculateTurnAngle(candidate_line) < M_PI) {
+		if (IsCandidateOnLeftOffLine(line, candidate_line)) {
 			endpoint = candidate;
 			line = candidate_line;
 		}
 	}
 
 	return endpoint;
+}
+
+bool GiftWrappingAlgorithm::IsCandidateOnLeftOffLine(const Vector2D &line, const Vector2D &candidate_line) {
+	return line.CalculateTurnAngle(candidate_line) < M_PI;
 }
