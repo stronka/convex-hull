@@ -1,7 +1,12 @@
 #include "geometry/point_collection.hpp"
+#include <stdexcept>
 
 const Point2D &OrderedPointCollection::get(const int index) const {
-	return points[index];
+	if (index < points.size()){
+		return points[index];
+	} else {
+		throw std::out_of_range("Index out of range.");
+	}
 };
 
 bool OrderedPointCollection::operator ==(const OrderedPointCollection &other) const {
