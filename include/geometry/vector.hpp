@@ -21,4 +21,4 @@ public:
 };
 
 
-#endif /* INCLUDE_GEOMETRY_POINT_HPP_ */
+#endif /* INCLUDE_GEOMETRY_VECTOR_HPP_ */
