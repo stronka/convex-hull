@@ -9,23 +9,25 @@ INCLUDE=include
 help:
 	@echo Help
 
-unit:
-	test_geometry
-	test_gift_wrapping
-
-test_geometry:
-	$(CC) test/geometry/test_geometry.cpp -o $(TEST_DEST)/test_geometry \
+test_point:
+	$(CC) test/geometry/test_point.cpp -o $(TEST_DEST)/test_point \
 	-I$(INCLUDE) -I$(CTESTIE_DIR) $(TEST_FLAGS)	
-	$(TEST_DEST)/test_geometry
+	$(TEST_DEST)/test_point
 
 test_vector:
-	$(CC) test/geometry/test_vector.cpp src/geometry/geometry.cpp\
+	$(CC) test/geometry/test_vector.cpp src/geometry/point.cpp \
 	-o $(TEST_DEST)/test_vector \
 	-I$(INCLUDE) -I$(CTESTIE_DIR) $(TEST_FLAGS)	
 	$(TEST_DEST)/test_vector
 
 test_gift_wrapping:
-	$(CC) test/algorithm/test_gift_wrapping.cpp src/geometry/geometry.cpp src/geometry/vector.cpp \
+	$(CC) test/algorithm/test_gift_wrapping.cpp src/geometry/point.cpp src/geometry/vector.cpp \
 	-o $(TEST_DEST)/test_gift_wrapping \
 	-I$(INCLUDE) -I$(CTESTIE_DIR) $(TEST_FLAGS)	
 	$(TEST_DEST)/test_gift_wrapping
+
+unit:
+	make test_point
+	make test_vector
+	make test_gift_wrapping
+	

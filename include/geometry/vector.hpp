@@ -8,8 +8,8 @@
 #ifndef SRC_GEOMETRY_VECTOR_HPP_
 #define SRC_GEOMETRY_VECTOR_HPP_
 
-#include "geometry/geometry.hpp"
 #include <iostream>
+#include "point.hpp"
 
 class Vector2D {
 private:

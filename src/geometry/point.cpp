@@ -5,7 +5,7 @@
  *      Author: Krzysztof
  */
 
-#include "geometry/geometry.hpp"
+#include "../../include/geometry/point.hpp"
 
 #include <math.h>
 
