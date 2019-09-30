@@ -9,6 +9,10 @@ const Point2D &OrderedPointCollection::get(const int index) const {
 	}
 };
 
+const Point2D &OrderedPointCollection::operator[](const int index) const {
+	return get(index);
+}
+
 bool OrderedPointCollection::operator ==(const OrderedPointCollection &other) const {
 	return points == other.points;
 }

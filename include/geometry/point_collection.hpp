@@ -16,6 +16,7 @@ public:
 	OrderedPointCollection(std::vector<Point2D> points) : points(points) {};
 
 	const Point2D &get(const int index) const;
+	const Point2D &operator[](const int index) const;
 	bool operator==(const OrderedPointCollection &other) const;
 
 	friend std::ostream &operator<<(std::ostream &stream, const OrderedPointCollection &collection);

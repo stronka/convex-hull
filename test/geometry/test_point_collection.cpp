@@ -39,6 +39,35 @@ TEST test_OrderedPointCollectionGet_IndexNotInRange_Throws(){
 
 }
 
+TEST test_OrderedPointCollectionGetOperator_IndexInRange_ReturnsReferenceToPoint(){
+	Point2D p = Point2D(1., 2.);
+
+	b.reset();
+	b.addPoint(p);
+
+	OrderedPointCollection collection = OrderedPointCollection(b.build());
+	ASSERT(collection[0] == p, "Fail.");
+}
+
+TEST test_OrderedPointCollectionGetOperator_IndexNotInRange_Throws(){
+	Point2D p = Point2D(1., 2.);
+
+	b.reset();
+	b.addPoint(p);
+
+	OrderedPointCollection collection = OrderedPointCollection(b.build());
+
+	try {
+		collection[1];
+		ASSERT(false, "Exception not raised.");
+	} catch (const std::out_of_range &e) {
+		ASSERT(true, "");
+	} catch (const std::exception &e){
+		ASSERT(false, "Wrong exception raised: %s", e.what());
+	}
+
+}
+
 TEST test_OrderedPointCollectionEqualOperator_CollectionsTheSame_ReturnTrue(){
 	Point2D p1 = Point2D(1., 2.);
 	Point2D p2 = Point2D(2., 2.);
@@ -104,6 +133,8 @@ TEST test_OrderedPointCollectionEqualOperator_CollectionsDifferentOrder_ReturnFa
 RUN(
 		test_OrderedPointCollectionGet_IndexInRange_ReturnsReferenceToPoint,
 		test_OrderedPointCollectionGet_IndexNotInRange_Throws,
+		test_OrderedPointCollectionGetOperator_IndexInRange_ReturnsReferenceToPoint,
+		test_OrderedPointCollectionGetOperator_IndexNotInRange_Throws,
 		test_OrderedPointCollectionEqualOperator_CollectionsTheSame_ReturnTrue,
 		test_OrderedPointCollectionEqualOperator_CollectionsDifferentSize_ReturnFalse,
 		test_OrderedPointCollectionEqualOperator_CollectionsTheSameSizeButDifferentPoints_ReturnFalse,
