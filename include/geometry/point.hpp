@@ -11,6 +11,7 @@
 #include <vector>
 #include <iostream>
 
+
 class Point2D {
 
 private:
@@ -27,8 +28,8 @@ public:
 
 	double GetDistance(Point2D const &other) const;
 
-	bool operator==(Point2D &other) const;
-	bool operator!=(Point2D &other) const;
+	bool operator==(Point2D const &other) const;
+	bool operator!=(Point2D const &other) const;
 	friend std::ostream &operator<<(std::ostream &stream, const Point2D &p);
 };
 

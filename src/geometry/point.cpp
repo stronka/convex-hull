@@ -6,8 +6,8 @@
  */
 
 #include "../../include/geometry/point.hpp"
-
 #include <math.h>
+
 
 double Point2D::GetX() const {
 	return x;
@@ -17,10 +17,17 @@ double Point2D::GetY() const {
 	return y;
 }
 
-
 double Point2D::GetDistance(Point2D const &other) const {
 	return pow(pow(x - other.GetX(), 2) + pow(y - other.GetY(), 2) , .5);
 };
+
+bool Point2D::operator==(Point2D const &other) const {
+	return x == other.GetX() and y == other.GetY();
+}
+
+bool Point2D::operator!=(Point2D const &other) const {
+	return x != other.GetX() or y != other.GetY();
+}
 
 std::ostream &operator<<(std::ostream &stream, const Point2D &p){
 	stream << "Point (" << p.GetX() << ", " << p.GetY() << ")" << std::endl;
@@ -28,13 +35,6 @@ std::ostream &operator<<(std::ostream &stream, const Point2D &p){
 
 };
 
-bool Point2D::operator==(Point2D &other) const {
-	return x == other.GetX() and y == other.GetY();
-}
-
-bool Point2D::operator!=(Point2D &other) const {
-	return x != other.GetX() or y != other.GetY();
-}
 
 void PointVectorBuilder::Reset(){
 	std::vector <Point2D> new_vector;
