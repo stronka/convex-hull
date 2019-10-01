@@ -9,7 +9,6 @@
 #include "geometry/vector.hpp"
 
 class GiftWrappingAlgorithm {
-
 public:
 	static void buildHull(const std::vector <Point2D> &points, PointCollectionBuilder &builder);
 
