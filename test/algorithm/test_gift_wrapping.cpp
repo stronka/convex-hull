@@ -197,7 +197,6 @@ TEST test_FindHull_FirstElementIsLeftmost_HullIsCorrect(){
 
 	std::vector <Point2D> expected = b.build();
 
-
 	GiftWrappingAlgorithm::buildHull(points, mockBuilder);
 	ASSERT(mockBuilder.points == expected, "Fail.");
 }
