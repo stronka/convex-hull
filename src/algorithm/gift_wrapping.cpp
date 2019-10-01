@@ -1,16 +1,26 @@
 #include "algorithm/gift_wrapping.hpp"
 #include <math.h>
 
-void GiftWrappingAlgorithm::buildHull(
-		const std::vector <Point2D> &points, PointCollectionBuilder &builder
-) {
+void GiftWrappingAlgorithm::buildHull(const std::vector <Point2D> &points, PointCollectionBuilder &builder) {
 	if (isDegeneratedCase(points)) {
-		for (const Point2D &p : points){\
-			builder.addPoint(p);
-		}
-		return;
+		buildDegeneratedHull(points, builder);
+	} else {
+		doJarvisScan(points, builder);
 	}
 
+};
+
+bool GiftWrappingAlgorithm::isDegeneratedCase( const std::vector<Point2D> &points) {
+	return points.size() < 3;
+}
+
+void GiftWrappingAlgorithm::buildDegeneratedHull(const std::vector<Point2D> &points, PointCollectionBuilder &builder) {
+	for (const Point2D &p : points) {
+		builder.addPoint(p);
+	}
+}
+
+void GiftWrappingAlgorithm::doJarvisScan(const std::vector<Point2D> &points, PointCollectionBuilder &builder) {
 	Point2D leftmost = findLeftMostPoint(points);
 	Point2D pointOnHull = leftmost;
 
@@ -19,10 +29,6 @@ void GiftWrappingAlgorithm::buildHull(
 		Point2D endpoint = chooseFirstEndpoint(pointOnHull, points);
 		pointOnHull = scanCandidates(pointOnHull, endpoint, points);
 	} while (leftmost != pointOnHull);
-};
-
-bool GiftWrappingAlgorithm::isDegeneratedCase( const std::vector<Point2D> &points) {
-	return points.size() < 3;
 }
 
 Point2D GiftWrappingAlgorithm::findLeftMostPoint(const std::vector <Point2D> &points) {
