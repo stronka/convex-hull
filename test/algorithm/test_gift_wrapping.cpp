@@ -3,9 +3,14 @@
 
 class MockPointCollectionBuilder : public PointCollectionBuilder {
 public:
-	virtual void addPoint(const Point2D &p) {points.push_back(p);};
-	virtual std::shared_ptr <const OrderedPointCollection> build() const {return std::shared_ptr <const OrderedPointCollection>();};
 	std::vector <Point2D> points;
+
+	virtual void addPoint(const Point2D &p) {
+		points.push_back(p);
+	};
+	virtual std::shared_ptr <const OrderedPointCollection> build() const {
+		return std::shared_ptr <const OrderedPointCollection>();
+	};
 };
 
 
@@ -162,31 +167,40 @@ TEST test_BuildHull_FirstElementIsLeftmost_HullSizeIsCorrect(){
 
 	ASSERT(mockBuilder.points.size() == 4, "Fail. Got %d, want %d", mockBuilder.points.size(), 4);
 }
-//
-//TEST test_FindHull_FirstElementIsLeftmost_HullIsCorrect(){
-//	// hull points
-//	Point2D p1(-1., 0.);
-//	Point2D p2(2., 0.);
-//	Point2D p3(2., 2.);
-//	Point2D p4(0., 2.);
-//	//remaining points
-//	Point2D p5(1., 1.);
-//
-//	PointVectorBuilder b;
-//
-//	b.addPoint(p1);
-//	b.addPoint(p2);
-//	b.addPoint(p3);
-//	b.addPoint(p4);
-//	b.addPoint(p5);
-//
-//	std::vector <Point2D> points = b.build();
-//
-//
-//	std::shared_ptr <const OrderedPointCollection> hull = GiftWrappingAlgorithm::findHull(points);
-//	std::cout << *hull << std::endl;
-//	ASSERT(true, "Fail.");
-//}
+
+TEST test_FindHull_FirstElementIsLeftmost_HullIsCorrect(){
+	MockPointCollectionBuilder mockBuilder;
+
+	// hull points
+	Point2D p1(-1., 0.);
+	Point2D p2(2., 0.);
+	Point2D p3(2., 2.);
+	Point2D p4(0., 2.);
+	//remaining points
+	Point2D p5(1., 1.);
+
+	PointVectorBuilder b;
+
+	b.addPoint(p1);
+	b.addPoint(p2);
+	b.addPoint(p3);
+	b.addPoint(p4);
+	b.addPoint(p5);
+
+	std::vector <Point2D> points = b.build();
+
+	b.reset();
+	b.addPoint(p1);
+	b.addPoint(p4);
+	b.addPoint(p3);
+	b.addPoint(p2);
+
+	std::vector <Point2D> expected = b.build();
+
+
+	GiftWrappingAlgorithm::buildHull(points, mockBuilder);
+	ASSERT(mockBuilder.points == expected, "Fail.");
+}
 
 RUN(
 		test_BuildHull_EmptyVectorPassed_HullEmpty,
@@ -196,6 +210,6 @@ RUN(
 		test_BuildHull_AllElementsOnAHull_HullContainsAllElements,
 		test_BuildHull_OneElementInsideull_HullSizeIsLessThanPointsSizeByOne,
 		test_BuildHull_ManyElementsInsideull_HullSizeIsCorrect,
-		test_BuildHull_FirstElementIsLeftmost_HullSizeIsCorrect
-//		test_FindHull_FirstElementIsLeftmost_HullIsCorrect
+		test_BuildHull_FirstElementIsLeftmost_HullSizeIsCorrect,
+		test_FindHull_FirstElementIsLeftmost_HullIsCorrect
 );
