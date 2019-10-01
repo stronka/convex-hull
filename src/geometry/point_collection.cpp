@@ -34,7 +34,7 @@ std::ostream &operator<<(std::ostream &stream, const OrderedPointCollection &col
 };
 
 
-std::unique_ptr <const OrderedPointCollection> OrderedPointCollectionBuilder::build() const {
-	auto collection = std::make_unique <const OrderedPointCollection> ();
+std::shared_ptr <const OrderedPointCollection> OrderedPointCollectionBuilder::build() const {
+	std::shared_ptr <const OrderedPointCollection> collection(new OrderedPointCollection);
 	return collection;
 }

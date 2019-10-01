@@ -30,7 +30,7 @@ public:
 class PointCollectionBuilder {
 public:
 //	virtual void addPoint() = 0;
-	virtual std::unique_ptr <const OrderedPointCollection> build() const = 0;
+	virtual std::shared_ptr <const OrderedPointCollection> build() const = 0;
 
 	virtual ~PointCollectionBuilder(){};
 };
@@ -38,7 +38,7 @@ public:
 
 class OrderedPointCollectionBuilder : public PointCollectionBuilder {
 public:
-	virtual std::unique_ptr <const OrderedPointCollection> build() const;
+	virtual std::shared_ptr <const OrderedPointCollection> build() const;
 };
 
 #endif /* INCLUDE_GEOMETRY_POINT_COLLECTION_HPP_ */

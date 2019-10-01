@@ -168,6 +168,12 @@ TEST test_OrderedPointCollectionBuilderBuild_NoPointsAdded_ReturnEmptyCollection
 	ASSERT(builder.build()->empty(), "Fail.");
 }
 
+TEST test_OrderedPointCollectionBuilderBuild_PointsAdded_ReturnNonEmptyCollection(){
+	OrderedPointCollectionBuilder builder;
+
+	ASSERT(not builder.build()->empty(), "Fail.");
+}
+
 
 RUN(
 		test_OrderedPointCollectionGet_IndexInRange_ReturnsReferenceToPoint,
