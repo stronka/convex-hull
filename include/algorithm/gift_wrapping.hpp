@@ -2,14 +2,16 @@
 #define INCLUDE_ALGORITHM_GIFT_WRAPPING_HPP_
 
 #include <vector>
+#include <memory>
 
-#include "../geometry/point.hpp"
+#include "geometry/point.hpp"
+#include "geometry/point_collection.hpp"
 #include "geometry/vector.hpp"
 
 class GiftWrappingAlgorithm {
 
 public:
-	static std::vector <Point2D> findHull(const std::vector <Point2D> &points);
+	static std::shared_ptr <const OrderedPointCollection> findHull(const std::vector <Point2D> &points);
 
 private:
 	static bool isDegeneratedCase(const std::vector<Point2D> &points);

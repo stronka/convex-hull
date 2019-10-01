@@ -29,7 +29,7 @@ test_vector:
 	$(TEST_DEST)/test_vector
 
 test_gift_wrapping:
-	$(CC) test/algorithm/test_gift_wrapping.cpp src/geometry/point.cpp src/geometry/vector.cpp \
+	$(CC) test/algorithm/test_gift_wrapping.cpp src/geometry/point.cpp src/geometry/vector.cpp src/geometry/point_collection.cpp \
 	-o $(TEST_DEST)/test_gift_wrapping \
 	-I$(INCLUDE) -I$(CTESTIE_DIR) $(TEST_FLAGS)	
 	$(TEST_DEST)/test_gift_wrapping
