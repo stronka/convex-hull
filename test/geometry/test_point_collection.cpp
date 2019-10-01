@@ -130,6 +130,45 @@ TEST test_OrderedPointCollectionEqualOperator_CollectionsDifferentOrder_ReturnFa
 	ASSERT(!(OrderedPointCollection(points1) == OrderedPointCollection(points2)), "Fail");
 }
 
+TEST test_OrderedPointCollectionSize_CollectionEmpty_ReturnZero(){
+	OrderedPointCollection collection;
+	ASSERT(collection.size() == 0, "Fail");
+}
+
+TEST test_OrderedPointCollectionSize_CollectionNotEmpty_ReturnSize(){
+	Point2D p1 = Point2D(1., 2.);
+	Point2D p2 = Point2D(2., 2.);
+
+	b.reset();
+	b.addPoint(p1);
+	b.addPoint(p2);
+	OrderedPointCollection collection = OrderedPointCollection(b.build());
+	ASSERT(collection.size() == 2, "Fail");
+}
+
+TEST test_OrderedPointCollectionEmpty_CollectionEmpty_ReturnTrue(){
+	OrderedPointCollection collection = OrderedPointCollection();
+	ASSERT(collection.empty(), "Fail");
+}
+
+TEST test_OrderedPointCollectionEmpty_CollectionNotEmpty_ReturnFalse(){
+	Point2D p1 = Point2D(1., 2.);
+	Point2D p2 = Point2D(2., 2.);
+
+	b.reset();
+	b.addPoint(p1);
+	b.addPoint(p2);
+	OrderedPointCollection collection = OrderedPointCollection(b.build());
+	ASSERT(not collection.empty(), "Fail");
+}
+
+
+TEST test_OrderedPointCollectionBuilderBuild_NoPointsAdded_ReturnEmptyCollection(){
+	OrderedPointCollectionBuilder builder;
+	ASSERT(builder.build()->empty(), "Fail.");
+}
+
+
 RUN(
 		test_OrderedPointCollectionGet_IndexInRange_ReturnsReferenceToPoint,
 		test_OrderedPointCollectionGet_IndexNotInRange_Throws,
@@ -138,5 +177,10 @@ RUN(
 		test_OrderedPointCollectionEqualOperator_CollectionsTheSame_ReturnTrue,
 		test_OrderedPointCollectionEqualOperator_CollectionsDifferentSize_ReturnFalse,
 		test_OrderedPointCollectionEqualOperator_CollectionsTheSameSizeButDifferentPoints_ReturnFalse,
-		test_OrderedPointCollectionEqualOperator_CollectionsDifferentOrder_ReturnFalse
+		test_OrderedPointCollectionEqualOperator_CollectionsDifferentOrder_ReturnFalse,
+		test_OrderedPointCollectionSize_CollectionEmpty_ReturnZero,
+		test_OrderedPointCollectionSize_CollectionNotEmpty_ReturnSize,
+		test_OrderedPointCollectionEmpty_CollectionEmpty_ReturnTrue,
+		test_OrderedPointCollectionEmpty_CollectionNotEmpty_ReturnFalse,
+		test_OrderedPointCollectionBuilderBuild_NoPointsAdded_ReturnEmptyCollection
 );

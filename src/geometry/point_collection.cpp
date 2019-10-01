@@ -1,6 +1,14 @@
 #include "geometry/point_collection.hpp"
 #include <stdexcept>
 
+const int OrderedPointCollection::size() const {
+	return points.size();
+}
+
+const bool OrderedPointCollection::empty() const {
+	return points.empty();
+}
+
 const Point2D &OrderedPointCollection::get(const int index) const {
 	if (index < points.size()){
 		return points[index];
@@ -24,3 +32,9 @@ std::ostream &operator<<(std::ostream &stream, const OrderedPointCollection &col
 	}
 	return stream;
 };
+
+
+std::unique_ptr <const OrderedPointCollection> OrderedPointCollectionBuilder::build() const {
+	auto collection = std::make_unique <const OrderedPointCollection> ();
+	return collection;
+}
