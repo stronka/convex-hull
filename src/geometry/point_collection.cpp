@@ -26,7 +26,7 @@ bool OrderedPointCollection::operator ==(const OrderedPointCollection &other) co
 }
 
 std::ostream &operator<<(std::ostream &stream, const OrderedPointCollection &collection){
-	stream << "OrderedPointCollection of size " << collection.points.size() << std::endl;
+	stream << "OrderedPointCollection of size " << collection.size() << std::endl;
 	for (const Point2D &p : collection.points){
 		stream << p;
 	}
@@ -34,7 +34,10 @@ std::ostream &operator<<(std::ostream &stream, const OrderedPointCollection &col
 };
 
 
+void OrderedPointCollectionBuilder::addPoint(const Point2D &p){
+	points.push_back(p);
+}
+
 std::shared_ptr <const OrderedPointCollection> OrderedPointCollectionBuilder::build() const {
-	std::shared_ptr <const OrderedPointCollection> collection(new OrderedPointCollection);
-	return collection;
+	return std::shared_ptr <const OrderedPointCollection> (new OrderedPointCollection(points));
 }

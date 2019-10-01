@@ -169,7 +169,10 @@ TEST test_OrderedPointCollectionBuilderBuild_NoPointsAdded_ReturnEmptyCollection
 }
 
 TEST test_OrderedPointCollectionBuilderBuild_PointsAdded_ReturnNonEmptyCollection(){
+	Point2D p1 = Point2D(1., 2.);
+
 	OrderedPointCollectionBuilder builder;
+	builder.addPoint(p1);
 
 	ASSERT(not builder.build()->empty(), "Fail.");
 }
@@ -188,5 +191,6 @@ RUN(
 		test_OrderedPointCollectionSize_CollectionNotEmpty_ReturnSize,
 		test_OrderedPointCollectionEmpty_CollectionEmpty_ReturnTrue,
 		test_OrderedPointCollectionEmpty_CollectionNotEmpty_ReturnFalse,
-		test_OrderedPointCollectionBuilderBuild_NoPointsAdded_ReturnEmptyCollection
+		test_OrderedPointCollectionBuilderBuild_NoPointsAdded_ReturnEmptyCollection,
+		test_OrderedPointCollectionBuilderBuild_PointsAdded_ReturnNonEmptyCollection
 );

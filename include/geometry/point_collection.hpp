@@ -29,7 +29,7 @@ public:
 
 class PointCollectionBuilder {
 public:
-//	virtual void addPoint() = 0;
+	virtual void addPoint(const Point2D &p) = 0;
 	virtual std::shared_ptr <const OrderedPointCollection> build() const = 0;
 
 	virtual ~PointCollectionBuilder(){};
@@ -38,7 +38,10 @@ public:
 
 class OrderedPointCollectionBuilder : public PointCollectionBuilder {
 public:
+	virtual void addPoint(const Point2D &p);
 	virtual std::shared_ptr <const OrderedPointCollection> build() const;
+private:
+	std::vector <Point2D> points;
 };
 
 #endif /* INCLUDE_GEOMETRY_POINT_COLLECTION_HPP_ */
