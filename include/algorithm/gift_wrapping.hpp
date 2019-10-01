@@ -11,7 +11,7 @@
 class GiftWrappingAlgorithm {
 
 public:
-	static std::shared_ptr <const OrderedPointCollection> findHull(const std::vector <Point2D> &points);
+	static void buildHull(const std::vector <Point2D> &points, PointCollectionBuilder &builder);
 
 private:
 	static bool isDegeneratedCase(const std::vector<Point2D> &points);

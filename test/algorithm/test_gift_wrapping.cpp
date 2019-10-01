@@ -1,39 +1,52 @@
 #include "ctestie.h"
 #include "../src/algorithm/gift_wrapping.cpp"
 
-
-TEST test_FindHull_EmptyVectorPassed_ReturnsEmpty(){
+class MockPointCollectionBuilder : public PointCollectionBuilder {
+public:
+	virtual void addPoint(const Point2D &p) {points.push_back(p);};
+	virtual std::shared_ptr <const OrderedPointCollection> build() const {return std::shared_ptr <const OrderedPointCollection>();};
 	std::vector <Point2D> points;
-	std::shared_ptr <const OrderedPointCollection> hull = GiftWrappingAlgorithm::findHull(points);
+};
 
-	ASSERT(hull->empty(), "Fail.");
+
+TEST test_BuildHull_EmptyVectorPassed_HullEmpty(){
+	MockPointCollectionBuilder mockBuilder;
+
+	std::vector <Point2D> points;
+	GiftWrappingAlgorithm::buildHull(points, mockBuilder);
+
+	ASSERT(mockBuilder.points.empty(), "Fail.");
 }
 
-TEST test_FindHull_OneElement_HullContainsOneElement(){
-	Point2D p(1., 2.);
+TEST test_BuildHull_OneElement_HullContainsOneElement(){
+	MockPointCollectionBuilder mockBuilder;
 
+	Point2D p(1., 2.);
 	PointVectorBuilder b;
 	b.addPoint(p);
 
-	std::shared_ptr <const OrderedPointCollection> hull = GiftWrappingAlgorithm::findHull(b.build());
+	GiftWrappingAlgorithm::buildHull(b.build(), mockBuilder);
 
-	ASSERT(hull->size() == 1, "Fail.");
+	ASSERT(mockBuilder.points.size() == 1, "Fail.");
 }
 
-TEST test_FindHull_TwoElements_HullContainsTwoElements(){
+TEST test_BuildHull_TwoElements_HullContainsTwoElements(){
+	MockPointCollectionBuilder mockBuilder;
+
 	Point2D p1(1., 2.);
 	Point2D p2(2., 2.);
-
 	PointVectorBuilder b;
 	b.addPoint(p1);
 	b.addPoint(p2);
 
-	std::shared_ptr <const OrderedPointCollection> hull = GiftWrappingAlgorithm::findHull(b.build());
+	GiftWrappingAlgorithm::buildHull(b.build(), mockBuilder);
 
-	ASSERT(hull->size() == 2, "Fail.");
+	ASSERT(mockBuilder.points.size() == 2, "Fail.");
 }
 
-TEST test_FindHull_ThreeElements_HullContainsThreeElements(){
+TEST test_BuildHull_ThreeElements_HullContainsThreeElements(){
+	MockPointCollectionBuilder mockBuilder;
+
 	Point2D p1(1., 2.);
 	Point2D p2(2., 2.);
 	Point2D p3(2., 3.);
@@ -43,18 +56,19 @@ TEST test_FindHull_ThreeElements_HullContainsThreeElements(){
 	b.addPoint(p2);
 	b.addPoint(p3);
 
-	std::shared_ptr <const OrderedPointCollection> hull = GiftWrappingAlgorithm::findHull(b.build());
+	GiftWrappingAlgorithm::buildHull(b.build(), mockBuilder);
 
-	ASSERT(hull->size() == 3, "Fail.");
+	ASSERT(mockBuilder.points.size() == 3, "Fail.");
 }
 
-TEST test_FindHull_AllElementsOnAHull_HullContainsAllElements(){
+TEST test_BuildHull_AllElementsOnAHull_HullContainsAllElements(){
+	MockPointCollectionBuilder mockBuilder;
+
 	Point2D p1(0., 0.);
 	Point2D p2(1., 0.);
 	Point2D p3(2., 1.);
 	Point2D p4(1., 2.);
 	Point2D p5(0., 2.);
-
 	PointVectorBuilder b;
 	b.addPoint(p1);
 	b.addPoint(p2);
@@ -64,12 +78,14 @@ TEST test_FindHull_AllElementsOnAHull_HullContainsAllElements(){
 
 
 	std::vector <Point2D> points = b.build();
-	std::shared_ptr <const OrderedPointCollection> hull = GiftWrappingAlgorithm::findHull(points);
+	GiftWrappingAlgorithm::buildHull(points, mockBuilder);
 
-	ASSERT(hull->size() == 5, "Fail. Got %d, want %d", hull->size(), points.size());
+	ASSERT(mockBuilder.points.size() == 5, "Fail. Got %d, want %d", mockBuilder.points.size(), points.size());
 }
 
-TEST test_FindHull_OneElementInsideull_HullSizeIsLessThanPointsSizeByOne(){
+TEST test_BuildHull_OneElementInsideull_HullSizeIsLessThanPointsSizeByOne(){
+	MockPointCollectionBuilder mockBuilder;
+
 	Point2D p1(0., 0.);
 	Point2D p2(2., 0.);
 	Point2D p3(2., 2.);
@@ -84,12 +100,14 @@ TEST test_FindHull_OneElementInsideull_HullSizeIsLessThanPointsSizeByOne(){
 	b.addPoint(p5);
 
 	std::vector <Point2D> points = b.build();
-	std::shared_ptr <const OrderedPointCollection> hull = GiftWrappingAlgorithm::findHull(points);
+	GiftWrappingAlgorithm::buildHull(points, mockBuilder);
 
-	ASSERT(hull->size() == points.size() - 1, "Fail. Got %d, want %d", hull->size(), points.size() - 1);
+	ASSERT(mockBuilder.points.size() == points.size() - 1, "Fail. Got %d, want %d", mockBuilder.points.size(), points.size() - 1);
 }
 
-TEST test_FindHull_ManyElementsInsideull_HullSizeIsCorrect(){
+TEST test_BuildHull_ManyElementsInsideull_HullSizeIsCorrect(){
+	MockPointCollectionBuilder mockBuilder;
+
 	// hull points
 	Point2D p1(0., 0.);
 	Point2D p2(2., 0.);
@@ -116,12 +134,14 @@ TEST test_FindHull_ManyElementsInsideull_HullSizeIsCorrect(){
 	b.addPoint(p10);
 
 	std::vector <Point2D> points = b.build();
-	std::shared_ptr <const OrderedPointCollection> hull = GiftWrappingAlgorithm::findHull(points);
+	GiftWrappingAlgorithm::buildHull(points, mockBuilder);
 
-	ASSERT(hull->size() == 4, "Fail. Got %d, want %d", hull->size(), 4);
+	ASSERT(mockBuilder.points.size() == 4, "Fail. Got %d, want %d", mockBuilder.points.size(), 4);
 }
 
-TEST test_FindHull_FirstElementIsLeftmost_HullSizeIsCorrect(){
+TEST test_BuildHull_FirstElementIsLeftmost_HullSizeIsCorrect(){
+	MockPointCollectionBuilder mockBuilder;
+
 	// hull points
 	Point2D p1(-1., 0.);
 	Point2D p2(2., 0.);
@@ -138,11 +158,11 @@ TEST test_FindHull_FirstElementIsLeftmost_HullSizeIsCorrect(){
 	b.addPoint(p5);
 
 	std::vector <Point2D> points = b.build();
-	std::shared_ptr <const OrderedPointCollection> hull = GiftWrappingAlgorithm::findHull(points);
+	GiftWrappingAlgorithm::buildHull(points, mockBuilder);
 
-	ASSERT(hull->size() == 4, "Fail. Got %d, want %d", hull->size(), 4);
+	ASSERT(mockBuilder.points.size() == 4, "Fail. Got %d, want %d", mockBuilder.points.size(), 4);
 }
-
+//
 //TEST test_FindHull_FirstElementIsLeftmost_HullIsCorrect(){
 //	// hull points
 //	Point2D p1(-1., 0.);
@@ -162,26 +182,20 @@ TEST test_FindHull_FirstElementIsLeftmost_HullSizeIsCorrect(){
 //
 //	std::vector <Point2D> points = b.build();
 //
-//	b.reset();
-//	b.addPoint(p1);
-//	b.addPoint(p2);
-//	b.addPoint(p3);
-//	b.addPoint(p4);
 //
-//	std::vector <Point2D> expected = b.build();
 //	std::shared_ptr <const OrderedPointCollection> hull = GiftWrappingAlgorithm::findHull(points);
-//
-//	ASSERT(hull == expected, "Fail.");
+//	std::cout << *hull << std::endl;
+//	ASSERT(true, "Fail.");
 //}
 
 RUN(
-		test_FindHull_EmptyVectorPassed_ReturnsEmpty,
-		test_FindHull_OneElement_HullContainsOneElement,
-		test_FindHull_TwoElements_HullContainsTwoElements,
-		test_FindHull_ThreeElements_HullContainsThreeElements,
-		test_FindHull_AllElementsOnAHull_HullContainsAllElements,
-		test_FindHull_OneElementInsideull_HullSizeIsLessThanPointsSizeByOne,
-		test_FindHull_ManyElementsInsideull_HullSizeIsCorrect,
-		test_FindHull_FirstElementIsLeftmost_HullSizeIsCorrect
+		test_BuildHull_EmptyVectorPassed_HullEmpty,
+		test_BuildHull_OneElement_HullContainsOneElement,
+		test_BuildHull_TwoElements_HullContainsTwoElements,
+		test_BuildHull_ThreeElements_HullContainsThreeElements,
+		test_BuildHull_AllElementsOnAHull_HullContainsAllElements,
+		test_BuildHull_OneElementInsideull_HullSizeIsLessThanPointsSizeByOne,
+		test_BuildHull_ManyElementsInsideull_HullSizeIsCorrect,
+		test_BuildHull_FirstElementIsLeftmost_HullSizeIsCorrect
 //		test_FindHull_FirstElementIsLeftmost_HullIsCorrect
 );

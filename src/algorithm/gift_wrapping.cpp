@@ -1,15 +1,14 @@
 #include "algorithm/gift_wrapping.hpp"
 #include <math.h>
 
-
-std::shared_ptr <const OrderedPointCollection> GiftWrappingAlgorithm::findHull(const std::vector <Point2D> &points) {
-	OrderedPointCollectionBuilder builder;
-
+void GiftWrappingAlgorithm::buildHull(
+		const std::vector <Point2D> &points, PointCollectionBuilder &builder
+) {
 	if (isDegeneratedCase(points)) {
 		for (const Point2D &p : points){\
 			builder.addPoint(p);
 		}
-		return builder.build();
+		return;
 	}
 
 	Point2D leftmost = findLeftMostPoint(points);
@@ -20,8 +19,6 @@ std::shared_ptr <const OrderedPointCollection> GiftWrappingAlgorithm::findHull(c
 		Point2D endpoint = chooseFirstEndpoint(pointOnHull, points);
 		pointOnHull = scanCandidates(pointOnHull, endpoint, points);
 	} while (leftmost != pointOnHull);
-
-	return builder.build();
 };
 
 bool GiftWrappingAlgorithm::isDegeneratedCase( const std::vector<Point2D> &points) {
