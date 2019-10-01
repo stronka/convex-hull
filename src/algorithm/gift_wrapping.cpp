@@ -42,10 +42,10 @@ Point2D GiftWrappingAlgorithm::chooseFirstEndpoint(const Point2D &pointOnHull, c
 }
 
 Point2D GiftWrappingAlgorithm::scanCandidates(const Point2D &pointOnHull, Point2D &endpoint, const std::vector<Point2D> &points) {
-	Vector2D line = Vector2D(pointOnHull, endpoint);
+	Vector2D line(pointOnHull, endpoint);
 
 	for (Point2D candidate : points) {
-		Vector2D candidateLine = Vector2D(pointOnHull, candidate);
+		Vector2D candidateLine(pointOnHull, candidate);
 
 		if (isCandidateOnLeftOfLine(line, candidateLine)) {
 			endpoint = candidate;

@@ -3,74 +3,74 @@
 #include "../../src/geometry/point.cpp"
 
 TEST test_Point_CreateFromCoords_ReturnPoint(){
-	Point2D p = Point2D(1., 2.);
+	Point2D p(1., 2.);
 	ASSERT(true, "Fail.");
 }
 
 TEST test_Point_GetX_ReturnsX(){
-	Point2D p = Point2D(1., 2.);
+	Point2D p(1., 2.);
 
 	double const x = p.getX();
 	ASSERT(x == 1., "Fail.");
 }
 
 TEST test_Point_GetY_ReturnsY(){
-	Point2D p = Point2D(1., 2.);
+	Point2D p(1., 2.);
 
 	double const y = p.getY();
 	ASSERT(y == 2., "Fail.");
 }
 
 TEST test_PointEquals_PointsTheSame_ReturnTrue(){
-	Point2D p1 = Point2D(1., 2.);
-	Point2D p2 = Point2D(1., 2.);
+	Point2D p1(1., 2.);
+	Point2D p2(1., 2.);
 
 	ASSERT(p1 == p2, "Fail.");
 }
 
 TEST test_PointEquals_PointsNotTheSame_ReturnFalse(){
-	Point2D p1 = Point2D(1., 2.);
-	Point2D p2 = Point2D(2., 2.);
+	Point2D p1(1., 2.);
+	Point2D p2(2., 2.);
 
 	ASSERT(!(p1 == p2), "Fail.");
 }
 
 TEST test_PointNotEquals_PointsNotTheSame_ReturnTrue(){
-	Point2D p1 = Point2D(1., 2.);
-	Point2D p2 = Point2D(2., 4.);
+	Point2D p1(1., 2.);
+	Point2D p2(2., 4.);
 
 	ASSERT(p1 != p2, "Fail.");
 }
 
 TEST test_PointNotEquals_PointsTheSame_ReturnFalse(){
-	Point2D p1 = Point2D(1., 2.);
-	Point2D p2 = Point2D(1., 2.);
+	Point2D p1(1., 2.);
+	Point2D p2(1., 2.);
 
 	ASSERT(!(p1 != p2), "Fail.");
 }
 
 TEST test_PointNotEquals_PointsXTheSame_ReturnTrue(){
-	Point2D p1 = Point2D(1., 2.);
-	Point2D p2 = Point2D(1., 3.);
+	Point2D p1(1., 2.);
+	Point2D p2(1., 3.);
 
 	ASSERT((p1 != p2), "Fail.");
 }
 
 TEST test_PointVectorBuilder_Always_ReturnInstance(){
-	PointVectorBuilder b = PointVectorBuilder();
+	PointVectorBuilder b;
 	ASSERT(true, "Fail");
 }
 
 TEST test_PointVectorBuilderBuild_NoPoints_ReturnsEmptyList(){
-	PointVectorBuilder b = PointVectorBuilder();
+	PointVectorBuilder b;
 	std::vector<Point2D> points = b.build();
 
 	ASSERT(points.empty(), "Fail.");
 }
 
 TEST test_PointVectorBuilderBuild_AddPoint_PointAdded(){
-	PointVectorBuilder b = PointVectorBuilder();
-	Point2D p = Point2D(1., 2.);
+	PointVectorBuilder b;
+	Point2D p(1., 2.);
 	b.addPoint(p);
 
 	std::vector<Point2D> points = b.build();
@@ -78,8 +78,8 @@ TEST test_PointVectorBuilderBuild_AddPoint_PointAdded(){
 }
 
 TEST test_PointVectorBuilderBuild_AddPointFewTimes_VectorSizeIsCorrect(){
-	PointVectorBuilder b = PointVectorBuilder();
-	Point2D p = Point2D(1., 2.);
+	PointVectorBuilder b;
+	Point2D p(1., 2.);
 
 	b.addPoint(p);
 	b.addPoint(p);
@@ -91,8 +91,8 @@ TEST test_PointVectorBuilderBuild_AddPointFewTimes_VectorSizeIsCorrect(){
 }
 
 TEST test_PointVectorBuilderReset_AddPointFewTimes_VectorSizeIsEmpty(){
-	PointVectorBuilder b = PointVectorBuilder();
-	Point2D p = Point2D(1., 2.);
+	PointVectorBuilder b;
+	Point2D p(1., 2.);
 
 	b.addPoint(p);
 	b.addPoint(p);

@@ -30,8 +30,7 @@ std::ostream &operator<<(std::ostream &stream, const Point2D &p){
 
 
 void PointVectorBuilder::reset(){
-	std::vector <Point2D> new_vector;
-	points = new_vector;
+	points = std::vector <Point2D>();
 };
 
 void PointVectorBuilder::addPoint(Point2D &p){

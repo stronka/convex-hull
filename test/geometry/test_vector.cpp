@@ -9,12 +9,12 @@
 #include "../src/geometry/vector.cpp"
 
 TEST test_PointVectorCalculatorCalculateTurnAngle_CaseColinearVectors_ReturnPi(){
-	Point2D p1 = Point2D(0., 0.);
-	Point2D p2 = Point2D(0., 1.);
-	Point2D p3 = Point2D(0., 2.);
+	Point2D p1(0., 0.);
+	Point2D p2(0., 1.);
+	Point2D p3(0., 2.);
 
-	Vector2D v1 = Vector2D(p1, p2);
-	Vector2D v2 = Vector2D(p2, p3);
+	Vector2D v1(p1, p2);
+	Vector2D v2(p2, p3);
 
 	double angle = v1.calculateTurnAngle(v2);
 
@@ -22,12 +22,12 @@ TEST test_PointVectorCalculatorCalculateTurnAngle_CaseColinearVectors_ReturnPi()
 }
 
 TEST test_PointVectorCalculatorCalculateTurnAngle_CaseVectorsAtRightAngle_ReturnPiTimesOneAndAHalf(){
-	Point2D p1 = Point2D(0., 0.);
-	Point2D p2 = Point2D(0., 1.);
-	Point2D p3 = Point2D(1., 1.);
+	Point2D p1(0., 0.);
+	Point2D p2(0., 1.);
+	Point2D p3(1., 1.);
 
-	Vector2D v1 = Vector2D(p1, p2);
-	Vector2D v2 = Vector2D(p2, p3);
+	Vector2D v1(p1, p2);
+	Vector2D v2(p2, p3);
 
 	double angle = v1.calculateTurnAngle(v2);
 

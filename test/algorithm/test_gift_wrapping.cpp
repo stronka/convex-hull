@@ -10,7 +10,7 @@ TEST test_FindHull_EmptyVectorPassed_ReturnsEmptyList(){
 }
 
 TEST test_FindHull_OneElement_HullContainsOneElement(){
-	Point2D p = Point2D(1., 2.);
+	Point2D p(1., 2.);
 
 	PointVectorBuilder b;
 	b.addPoint(p);
@@ -21,8 +21,8 @@ TEST test_FindHull_OneElement_HullContainsOneElement(){
 }
 
 TEST test_FindHull_TwoElements_HullContainsTwoElements(){
-	Point2D p1 = Point2D(1., 2.);
-	Point2D p2 = Point2D(2., 2.);
+	Point2D p1(1., 2.);
+	Point2D p2(2., 2.);
 
 	PointVectorBuilder b;
 	b.addPoint(p1);
@@ -34,9 +34,9 @@ TEST test_FindHull_TwoElements_HullContainsTwoElements(){
 }
 
 TEST test_FindHull_ThreeElements_HullContainsThreeElements(){
-	Point2D p1 = Point2D(1., 2.);
-	Point2D p2 = Point2D(2., 2.);
-	Point2D p3 = Point2D(2., 3.);
+	Point2D p1(1., 2.);
+	Point2D p2(2., 2.);
+	Point2D p3(2., 3.);
 
 	PointVectorBuilder b;
 	b.addPoint(p1);
@@ -49,11 +49,11 @@ TEST test_FindHull_ThreeElements_HullContainsThreeElements(){
 }
 
 TEST test_FindHull_AllElementsOnAHull_HullContainsAllElements(){
-	Point2D p1 = Point2D(0., 0.);
-	Point2D p2 = Point2D(1., 0.);
-	Point2D p3 = Point2D(2., 1.);
-	Point2D p4 = Point2D(1., 2.);
-	Point2D p5 = Point2D(0., 2.);
+	Point2D p1(0., 0.);
+	Point2D p2(1., 0.);
+	Point2D p3(2., 1.);
+	Point2D p4(1., 2.);
+	Point2D p5(0., 2.);
 
 	PointVectorBuilder b;
 	b.addPoint(p1);
@@ -70,11 +70,11 @@ TEST test_FindHull_AllElementsOnAHull_HullContainsAllElements(){
 }
 
 TEST test_FindHull_OneElementInsideull_HullSizeIsLessThanPointsSizeByOne(){
-	Point2D p1 = Point2D(0., 0.);
-	Point2D p2 = Point2D(2., 0.);
-	Point2D p3 = Point2D(2., 2.);
-	Point2D p4 = Point2D(1., 1.);
-	Point2D p5 = Point2D(0., 2.);
+	Point2D p1(0., 0.);
+	Point2D p2(2., 0.);
+	Point2D p3(2., 2.);
+	Point2D p4(1., 1.);
+	Point2D p5(0., 2.);
 
 	PointVectorBuilder b;
 	b.addPoint(p1);
@@ -91,17 +91,17 @@ TEST test_FindHull_OneElementInsideull_HullSizeIsLessThanPointsSizeByOne(){
 
 TEST test_FindHull_ManyElementsInsideull_HullSizeIsCorrect(){
 	// hull points
-	Point2D p1 = Point2D(0., 0.);
-	Point2D p2 = Point2D(2., 0.);
-	Point2D p3 = Point2D(2., 2.);
-	Point2D p4 = Point2D(0., 2.);
+	Point2D p1(0., 0.);
+	Point2D p2(2., 0.);
+	Point2D p3(2., 2.);
+	Point2D p4(0., 2.);
 	//remaining points
-	Point2D p5 = Point2D(1., 1.);
-	Point2D p6 = Point2D(1., 1.1);
-	Point2D p7 = Point2D(1.1, 1.1);
-	Point2D p8 = Point2D(1.1, 1.);
-	Point2D p9 = Point2D(1.2, 1.);
-	Point2D p10 = Point2D(1.2, 1.2);
+	Point2D p5(1., 1.);
+	Point2D p6(1., 1.1);
+	Point2D p7(1.1, 1.1);
+	Point2D p8(1.1, 1.);
+	Point2D p9(1.2, 1.);
+	Point2D p10(1.2, 1.2);
 
 	PointVectorBuilder b;
 	b.addPoint(p1);
@@ -123,12 +123,12 @@ TEST test_FindHull_ManyElementsInsideull_HullSizeIsCorrect(){
 
 TEST test_FindHull_FirstElementIsLeftmost_HullSizeIsCorrect(){
 	// hull points
-	Point2D p1 = Point2D(-1., 0.);
-	Point2D p2 = Point2D(2., 0.);
-	Point2D p3 = Point2D(2., 2.);
-	Point2D p4 = Point2D(0., 2.);
+	Point2D p1(-1., 0.);
+	Point2D p2(2., 0.);
+	Point2D p3(2., 2.);
+	Point2D p4(0., 2.);
 	//remaining points
-	Point2D p5 = Point2D(1., 1.);
+	Point2D p5(1., 1.);
 
 	PointVectorBuilder b;
 	b.addPoint(p1);
@@ -145,12 +145,12 @@ TEST test_FindHull_FirstElementIsLeftmost_HullSizeIsCorrect(){
 
 TEST test_FindHull_FirstElementIsLeftmost_HullIsCorrect(){
 	// hull points
-	Point2D p1 = Point2D(-1., 0.);
-	Point2D p2 = Point2D(2., 0.);
-	Point2D p3 = Point2D(2., 2.);
-	Point2D p4 = Point2D(0., 2.);
+	Point2D p1(-1., 0.);
+	Point2D p2(2., 0.);
+	Point2D p3(2., 2.);
+	Point2D p4(0., 2.);
 	//remaining points
-	Point2D p5 = Point2D(1., 1.);
+	Point2D p5(1., 1.);
 
 	PointVectorBuilder b;
 

@@ -11,7 +11,7 @@ TEST test_OrderedPointCollectionCreate_Always_CreateObject(){
 }
 
 TEST test_OrderedPointCollectionGet_IndexInRange_ReturnsReferenceToPoint(){
-	Point2D p = Point2D(1., 2.);
+	Point2D p(1., 2.);
 
 	b.reset();
 	b.addPoint(p);
@@ -21,7 +21,7 @@ TEST test_OrderedPointCollectionGet_IndexInRange_ReturnsReferenceToPoint(){
 }
 
 TEST test_OrderedPointCollectionGet_IndexNotInRange_Throws(){
-	Point2D p = Point2D(1., 2.);
+	Point2D p(1., 2.);
 
 	b.reset();
 	b.addPoint(p);
@@ -40,7 +40,7 @@ TEST test_OrderedPointCollectionGet_IndexNotInRange_Throws(){
 }
 
 TEST test_OrderedPointCollectionGetOperator_IndexInRange_ReturnsReferenceToPoint(){
-	Point2D p = Point2D(1., 2.);
+	Point2D p(1., 2.);
 
 	b.reset();
 	b.addPoint(p);
@@ -50,7 +50,7 @@ TEST test_OrderedPointCollectionGetOperator_IndexInRange_ReturnsReferenceToPoint
 }
 
 TEST test_OrderedPointCollectionGetOperator_IndexNotInRange_Throws(){
-	Point2D p = Point2D(1., 2.);
+	Point2D p(1., 2.);
 
 	b.reset();
 	b.addPoint(p);
@@ -69,8 +69,8 @@ TEST test_OrderedPointCollectionGetOperator_IndexNotInRange_Throws(){
 }
 
 TEST test_OrderedPointCollectionEqualOperator_CollectionsTheSame_ReturnTrue(){
-	Point2D p1 = Point2D(1., 2.);
-	Point2D p2 = Point2D(2., 2.);
+	Point2D p1(1., 2.);
+	Point2D p2(2., 2.);
 
 	b.reset();
 	b.addPoint(p1);
@@ -82,8 +82,8 @@ TEST test_OrderedPointCollectionEqualOperator_CollectionsTheSame_ReturnTrue(){
 }
 
 TEST test_OrderedPointCollectionEqualOperator_CollectionsDifferentSize_ReturnFalse(){
-	Point2D p1 = Point2D(1., 2.);
-	Point2D p2 = Point2D(2., 2.);
+	Point2D p1(1., 2.);
+	Point2D p2(2., 2.);
 
 	b.reset();
 	b.addPoint(p1);
@@ -98,9 +98,9 @@ TEST test_OrderedPointCollectionEqualOperator_CollectionsDifferentSize_ReturnFal
 }
 
 TEST test_OrderedPointCollectionEqualOperator_CollectionsTheSameSizeButDifferentPoints_ReturnFalse(){
-	Point2D p1 = Point2D(1., 2.);
-	Point2D p2 = Point2D(3., 2.);
-	Point2D p3 = Point2D(2., 2.);
+	Point2D p1(1., 2.);
+	Point2D p2(3., 2.);
+	Point2D p3(2., 2.);
 
 	b.reset();
 	b.addPoint(p1);
@@ -115,8 +115,8 @@ TEST test_OrderedPointCollectionEqualOperator_CollectionsTheSameSizeButDifferent
 }
 
 TEST test_OrderedPointCollectionEqualOperator_CollectionsDifferentOrder_ReturnFalse(){
-	Point2D p1 = Point2D(1., 2.);
-	Point2D p2 = Point2D(2., 2.);
+	Point2D p1(1., 2.);
+	Point2D p2(2., 2.);
 
 	b.reset();
 	b.addPoint(p1);
@@ -136,8 +136,8 @@ TEST test_OrderedPointCollectionSize_CollectionEmpty_ReturnZero(){
 }
 
 TEST test_OrderedPointCollectionSize_CollectionNotEmpty_ReturnSize(){
-	Point2D p1 = Point2D(1., 2.);
-	Point2D p2 = Point2D(2., 2.);
+	Point2D p1(1., 2.);
+	Point2D p2(2., 2.);
 
 	b.reset();
 	b.addPoint(p1);
@@ -152,8 +152,8 @@ TEST test_OrderedPointCollectionEmpty_CollectionEmpty_ReturnTrue(){
 }
 
 TEST test_OrderedPointCollectionEmpty_CollectionNotEmpty_ReturnFalse(){
-	Point2D p1 = Point2D(1., 2.);
-	Point2D p2 = Point2D(2., 2.);
+	Point2D p1(1., 2.);
+	Point2D p2(2., 2.);
 
 	b.reset();
 	b.addPoint(p1);
@@ -169,7 +169,7 @@ TEST test_OrderedPointCollectionBuilderBuild_NoPointsAdded_ReturnEmptyCollection
 }
 
 TEST test_OrderedPointCollectionBuilderBuild_PointsAdded_ReturnNonEmptyCollection(){
-	Point2D p1 = Point2D(1., 2.);
+	Point2D p1(1., 2.);
 
 	OrderedPointCollectionBuilder builder;
 	builder.addPoint(p1);
