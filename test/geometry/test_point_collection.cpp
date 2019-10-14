@@ -3,194 +3,62 @@
 #include "../../src/geometry/point_collection.cpp"
 
 #include <stdexcept>
-static PointVectorBuilder b;
 
-TEST test_OrderedPointCollectionCreate_Always_CreateObject(){
-	OrderedPointCollection collection;
-	ASSERT(true, "Fail.");
+
+TEST test_PointVectorBuilder_Always_ReturnInstance(){
+	PointVectorBuilder b;
+	ASSERT(true, "Fail");
 }
 
-TEST test_OrderedPointCollectionGet_IndexInRange_ReturnsReferenceToPoint(){
-	Point2D p(1., 2.);
+TEST test_PointVectorBuilderBuild_NoPoints_ReturnsEmptyList(){
+	PointVectorBuilder b;
+	std::vector<Point2D> points = b.build();
 
-	b.reset();
+	ASSERT(points.empty(), "Fail.");
+}
+
+TEST test_PointVectorBuilderBuild_AddPoint_PointAdded(){
+	PointVectorBuilder b;
+	Point2D p(1., 2.);
 	b.addPoint(p);
 
-	OrderedPointCollection collection = OrderedPointCollection(b.build());
-	ASSERT(collection.get(0) == p, "Fail.");
+	std::vector<Point2D> points = b.build();
+	ASSERT(points[0] == p, "Fail.");
 }
 
-TEST test_OrderedPointCollectionGet_IndexNotInRange_Throws(){
+TEST test_PointVectorBuilderBuild_AddPointFewTimes_VectorSizeIsCorrect(){
+	PointVectorBuilder b;
 	Point2D p(1., 2.);
 
-	b.reset();
+	b.addPoint(p);
+	b.addPoint(p);
+	b.addPoint(p);
 	b.addPoint(p);
 
-	OrderedPointCollection collection = OrderedPointCollection(b.build());
-
-	try {
-		collection.get(1);
-		ASSERT(false, "Exception not raised.");
-	} catch (const std::out_of_range &e) {
-		ASSERT(true, "");
-	} catch (const std::exception &e){
-		ASSERT(false, "Wrong exception raised: %s", e.what());
-	}
-
+	std::vector<Point2D> points = b.build();
+	ASSERT(points.size() == 4, "Fail.");
 }
 
-TEST test_OrderedPointCollectionGetOperator_IndexInRange_ReturnsReferenceToPoint(){
+TEST test_PointVectorBuilderReset_AddPointFewTimes_VectorSizeIsEmpty(){
+	PointVectorBuilder b;
 	Point2D p(1., 2.);
 
-	b.reset();
 	b.addPoint(p);
-
-	OrderedPointCollection collection = OrderedPointCollection(b.build());
-	ASSERT(collection[0] == p, "Fail.");
-}
-
-TEST test_OrderedPointCollectionGetOperator_IndexNotInRange_Throws(){
-	Point2D p(1., 2.);
-
-	b.reset();
 	b.addPoint(p);
-
-	OrderedPointCollection collection = OrderedPointCollection(b.build());
-
-	try {
-		collection[1];
-		ASSERT(false, "Exception not raised.");
-	} catch (const std::out_of_range &e) {
-		ASSERT(true, "");
-	} catch (const std::exception &e){
-		ASSERT(false, "Wrong exception raised: %s", e.what());
-	}
-
-}
-
-TEST test_OrderedPointCollectionEqualOperator_CollectionsTheSame_ReturnTrue(){
-	Point2D p1(1., 2.);
-	Point2D p2(2., 2.);
-
+	b.addPoint(p);
+	b.addPoint(p);
 	b.reset();
-	b.addPoint(p1);
-	b.addPoint(p2);
 
-	std::vector <Point2D> points1 = b.build();
-	std::vector <Point2D> points2 = b.build();
-	ASSERT(OrderedPointCollection(points1) == OrderedPointCollection(points2), "Fail");
+	std::vector<Point2D> points = b.build();
+	ASSERT(points.empty(), "Fail.");
 }
 
-TEST test_OrderedPointCollectionEqualOperator_CollectionsDifferentSize_ReturnFalse(){
-	Point2D p1(1., 2.);
-	Point2D p2(2., 2.);
-
-	b.reset();
-	b.addPoint(p1);
-	b.addPoint(p2);
-	std::vector <Point2D> points1 = b.build();
-
-	b.reset();
-	b.addPoint(p1);
-	std::vector <Point2D> points2 = b.build();
-
-	ASSERT(!(OrderedPointCollection(points1) == OrderedPointCollection(points2)), "Fail");
-}
-
-TEST test_OrderedPointCollectionEqualOperator_CollectionsTheSameSizeButDifferentPoints_ReturnFalse(){
-	Point2D p1(1., 2.);
-	Point2D p2(3., 2.);
-	Point2D p3(2., 2.);
-
-	b.reset();
-	b.addPoint(p1);
-	b.addPoint(p2);
-	std::vector <Point2D> points1 = b.build();
-
-	b.reset();
-	b.addPoint(p1);
-	b.addPoint(p3);
-	std::vector <Point2D> points2 = b.build();
-	ASSERT(!(OrderedPointCollection(points1) == OrderedPointCollection(points2)), "Fail");
-}
-
-TEST test_OrderedPointCollectionEqualOperator_CollectionsDifferentOrder_ReturnFalse(){
-	Point2D p1(1., 2.);
-	Point2D p2(2., 2.);
-
-	b.reset();
-	b.addPoint(p1);
-	b.addPoint(p2);
-	std::vector <Point2D> points1 = b.build();
-
-	b.reset();
-	b.addPoint(p2);
-	b.addPoint(p1);
-	std::vector <Point2D> points2 = b.build();
-	ASSERT(!(OrderedPointCollection(points1) == OrderedPointCollection(points2)), "Fail");
-}
-
-TEST test_OrderedPointCollectionSize_CollectionEmpty_ReturnZero(){
-	OrderedPointCollection collection;
-	ASSERT(collection.size() == 0, "Fail");
-}
-
-TEST test_OrderedPointCollectionSize_CollectionNotEmpty_ReturnSize(){
-	Point2D p1(1., 2.);
-	Point2D p2(2., 2.);
-
-	b.reset();
-	b.addPoint(p1);
-	b.addPoint(p2);
-	OrderedPointCollection collection = OrderedPointCollection(b.build());
-	ASSERT(collection.size() == 2, "Fail");
-}
-
-TEST test_OrderedPointCollectionEmpty_CollectionEmpty_ReturnTrue(){
-	OrderedPointCollection collection = OrderedPointCollection();
-	ASSERT(collection.empty(), "Fail");
-}
-
-TEST test_OrderedPointCollectionEmpty_CollectionNotEmpty_ReturnFalse(){
-	Point2D p1(1., 2.);
-	Point2D p2(2., 2.);
-
-	b.reset();
-	b.addPoint(p1);
-	b.addPoint(p2);
-	OrderedPointCollection collection = OrderedPointCollection(b.build());
-	ASSERT(not collection.empty(), "Fail");
-}
-
-
-TEST test_OrderedPointCollectionBuilderBuild_NoPointsAdded_ReturnEmptyCollection(){
-	OrderedPointCollectionBuilder builder;
-	ASSERT(builder.build()->empty(), "Fail.");
-}
-
-TEST test_OrderedPointCollectionBuilderBuild_PointsAdded_ReturnNonEmptyCollection(){
-	Point2D p1(1., 2.);
-
-	OrderedPointCollectionBuilder builder;
-	builder.addPoint(p1);
-
-	ASSERT(not builder.build()->empty(), "Fail.");
-}
 
 
 RUN(
-		test_OrderedPointCollectionGet_IndexInRange_ReturnsReferenceToPoint,
-		test_OrderedPointCollectionGet_IndexNotInRange_Throws,
-		test_OrderedPointCollectionGetOperator_IndexInRange_ReturnsReferenceToPoint,
-		test_OrderedPointCollectionGetOperator_IndexNotInRange_Throws,
-		test_OrderedPointCollectionEqualOperator_CollectionsTheSame_ReturnTrue,
-		test_OrderedPointCollectionEqualOperator_CollectionsDifferentSize_ReturnFalse,
-		test_OrderedPointCollectionEqualOperator_CollectionsTheSameSizeButDifferentPoints_ReturnFalse,
-		test_OrderedPointCollectionEqualOperator_CollectionsDifferentOrder_ReturnFalse,
-		test_OrderedPointCollectionSize_CollectionEmpty_ReturnZero,
-		test_OrderedPointCollectionSize_CollectionNotEmpty_ReturnSize,
-		test_OrderedPointCollectionEmpty_CollectionEmpty_ReturnTrue,
-		test_OrderedPointCollectionEmpty_CollectionNotEmpty_ReturnFalse,
-		test_OrderedPointCollectionBuilderBuild_NoPointsAdded_ReturnEmptyCollection,
-		test_OrderedPointCollectionBuilderBuild_PointsAdded_ReturnNonEmptyCollection
+	test_PointVectorBuilder_Always_ReturnInstance,
+	test_PointVectorBuilderBuild_NoPoints_ReturnsEmptyList,
+	test_PointVectorBuilderBuild_AddPoint_PointAdded,
+	test_PointVectorBuilderBuild_AddPointFewTimes_VectorSizeIsCorrect,
+	test_PointVectorBuilderReset_AddPointFewTimes_VectorSizeIsEmpty
 );

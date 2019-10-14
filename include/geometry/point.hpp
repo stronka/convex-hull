@@ -27,15 +27,4 @@ public:
 };
 
 
-class PointVectorBuilder {
-private:
-	std::vector <Point2D> points;
-
-public:
-	void reset();
-	void addPoint(Point2D &p);
-	std::vector <Point2D> build() const;
-};
-
-
 #endif /* INCLUDE_GEOMETRY_POINT_HPP_ */

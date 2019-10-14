@@ -5,12 +5,7 @@ class MockPointCollectionBuilder : public PointCollectionBuilder {
 public:
 	std::vector <Point2D> points;
 
-	virtual void addPoint(const Point2D &p) {
-		points.push_back(p);
-	};
-	virtual std::shared_ptr <const OrderedPointCollection> build() const {
-		return std::shared_ptr <const OrderedPointCollection>();
-	};
+	void addPoint(const Point2D &p) { points.push_back(p); };
 };
 
 

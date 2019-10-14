@@ -28,15 +28,3 @@ std::ostream &operator<<(std::ostream &stream, const Point2D &p){
 
 };
 
-
-void PointVectorBuilder::reset(){
-	points = std::vector <Point2D>();
-};
-
-void PointVectorBuilder::addPoint(Point2D &p){
-	points.push_back(p);
-};
-
-std::vector <Point2D> PointVectorBuilder::build() const {
-	return points;
-}
