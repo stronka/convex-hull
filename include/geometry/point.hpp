@@ -1,7 +1,6 @@
 #ifndef INCLUDE_GEOMETRY_POINT_HPP_
 #define INCLUDE_GEOMETRY_POINT_HPP_
 
-#include <vector>
 #include <iostream>
 
 
@@ -13,8 +12,7 @@ private:
 
 public:
 	Point2D() : x(0.), y(0.) {};
-	Point2D(double x, double y) : x(x), y(y){
-	};
+	Point2D(double x, double y) : x(x), y(y){};
 
 	double getX() const;
 	double getY() const;

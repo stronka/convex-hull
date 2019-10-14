@@ -1,4 +1,4 @@
-#include "ctestie.h"
+#include <ctestie.h>
 #include "../src/algorithm/gift_wrapping.cpp"
 
 class MockPointCollectionBuilder : public PointCollectionBuilder {

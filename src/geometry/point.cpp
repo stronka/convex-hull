@@ -11,7 +11,7 @@ double Point2D::getY() const {
 }
 
 double Point2D::getDistance(const Point2D &other) const {
-	return pow(pow(x - other.getX(), 2) + pow(y - other.getY(), 2) , .5);
+	return sqrt(pow(x - other.getX(), 2) + pow(y - other.getY(), 2));
 };
 
 bool Point2D::operator==(const Point2D &other) const {

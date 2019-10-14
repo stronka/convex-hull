@@ -2,8 +2,8 @@
 #define INCLUDE_GEOMETRY_POINT_COLLECTION_HPP_
 
 #include <vector>
-#include <memory>
 #include "geometry/point.hpp"
+
 
 class PointCollectionBuilder {
 public:

@@ -1,6 +1,8 @@
 #include "geometry/vector.hpp"
 #include <math.h>
 
+#include <iostream>
+
 double Vector2D::calculateTurnAngle(const Vector2D &other) const {
 	double const length_product = calculateLength() * other.calculateLength();
 	double const component_products = \

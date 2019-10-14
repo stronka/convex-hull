@@ -1,5 +1,4 @@
 #include "geometry/point_collection.hpp"
-#include <stdexcept>
 
 
 void PointVectorBuilder::reset(){
