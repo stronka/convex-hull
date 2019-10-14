@@ -1,7 +1,7 @@
-#include "geometry/vector.hpp"
 #include <math.h>
-
 #include <iostream>
+#include "geometry/vector.hpp"
+
 
 double Vector2D::calculateTurnAngle(const Vector2D &other) const {
 	double const length_product = calculateLength() * other.calculateLength();

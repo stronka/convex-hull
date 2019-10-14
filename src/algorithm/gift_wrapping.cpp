@@ -1,5 +1,5 @@
-#include "algorithm/gift_wrapping.hpp"
 #include <math.h>
+#include "algorithm/gift_wrapping.hpp"
 
 void GiftWrappingAlgorithm::buildHull(const std::vector <Point2D> &points, PointCollectionBuilder &builder) {
 	if (isDegeneratedCase(points)) {

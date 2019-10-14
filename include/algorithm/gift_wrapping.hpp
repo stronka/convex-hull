@@ -2,7 +2,6 @@
 #define INCLUDE_ALGORITHM_GIFT_WRAPPING_HPP_
 
 #include <vector>
-#include <memory>
 
 #include "geometry/point.hpp"
 #include "geometry/point_collection.hpp"

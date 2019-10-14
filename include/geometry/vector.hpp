@@ -2,7 +2,7 @@
 #define INCLUDE_GEOMETRY_VECTOR_HPP_
 
 #include <iostream>
-#include "point.hpp"
+#include "geometry/point.hpp"
 
 class Vector2D {
 private:
