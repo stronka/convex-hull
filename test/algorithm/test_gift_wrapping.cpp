@@ -1,13 +1,6 @@
 #include <ctestie.h>
+#include "./utils.h"
 #include "../src/algorithm/gift_wrapping.cpp"
-
-class MockPointCollectionBuilder : public PointCollectionBuilder {
-public:
-	std::vector <Point2D> points;
-
-	void addPoint(const Point2D &p) { points.push_back(p); };
-};
-
 
 TEST test_BuildHull_EmptyVectorPassed_HullEmpty(){
 	MockPointCollectionBuilder mockBuilder;
