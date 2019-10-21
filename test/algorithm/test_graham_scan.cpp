@@ -1,6 +1,7 @@
 #include <ctestie.h>
-#include "./utils.hpp"
-#include "../src/algorithm/graham_scan.cpp"
+#include "utils.hpp"
+
+#include "algorithm/graham_scan.hpp"
 
 void build_hull(const std::vector <Point2D> &points, PointCollectionBuilder &builder){
 	GrahamScanAlgorithm algorithm;

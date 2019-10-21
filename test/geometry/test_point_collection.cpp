@@ -1,9 +1,7 @@
 #include <ctestie.h>
-
-#include "../../src/geometry/point_collection.cpp"
-
 #include <stdexcept>
 
+#include "geometry/point_collection.hpp"
 
 TEST test_PointVectorBuilder_Always_ReturnInstance(){
 	PointVectorBuilder b;

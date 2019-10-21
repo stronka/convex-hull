@@ -1,6 +1,7 @@
 #include <ctestie.h>
 #include "utils.hpp"
-#include "../src/algorithm/gift_wrapping.cpp"
+
+#include "algorithm/gift_wrapping.hpp"
 
 void build_hull(const std::vector <Point2D> &points, PointCollectionBuilder &builder){
 	GiftWrappingAlgorithm algorithm;

@@ -1,5 +1,6 @@
 #include <ctestie.h>
-#include "../src/geometry/vector.cpp"
+#include <math.h>
+#include "geometry/vector.hpp"
 
 TEST test_PointVectorCalculatorCalculateTurnAngle_CaseColinearVectors_ReturnPi(){
 	Point2D p1(0., 0.);

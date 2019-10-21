@@ -1,7 +1,6 @@
 #include <math.h>
 #include "geometry/point.hpp"
 
-
 double Point2D::getX() const {
 	return x;
 }

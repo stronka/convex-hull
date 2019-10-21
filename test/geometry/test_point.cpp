@@ -1,6 +1,5 @@
 #include <ctestie.h>
-
-#include "../../src/geometry/point.cpp"
+#include "geometry/point.hpp"
 
 TEST test_Point_CreateFromCoords_ReturnPoint(){
 	Point2D p(1., 2.);
@@ -56,6 +55,14 @@ TEST test_PointNotEquals_PointsXTheSame_ReturnTrue(){
 	ASSERT((p1 != p2), "Fail.");
 }
 
+TEST test_PointGetDistance_DifferentPoints_ReturnNonZeroDistance(){
+	Point2D p1(1., 2.);
+	Point2D p2(1., 3.);
+
+	ASSERT(p1.getDistance(p2) == 1.f, "Fail.");
+}
+
+
 
 RUN(
 		test_Point_CreateFromCoords_ReturnPoint,
@@ -65,5 +72,6 @@ RUN(
 		test_PointEquals_PointsNotTheSame_ReturnFalse,
 		test_PointNotEquals_PointsNotTheSame_ReturnTrue,
 		test_PointNotEquals_PointsTheSame_ReturnFalse,
-		test_PointNotEquals_PointsXTheSame_ReturnTrue
+		test_PointNotEquals_PointsXTheSame_ReturnTrue,
+		test_PointGetDistance_DifferentPoints_ReturnNonZeroDistance
 );
