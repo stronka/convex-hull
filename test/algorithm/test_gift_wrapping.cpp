@@ -1,12 +1,17 @@
 #include <ctestie.h>
-#include "../src/algorithm/gift_wrapping.cpp"
 #include "utils.hpp"
+#include "../src/algorithm/gift_wrapping.cpp"
+
+void build_hull(const std::vector <Point2D> &points, PointCollectionBuilder &builder){
+	GiftWrappingAlgorithm algorithm;
+	algorithm.buildHull(points, builder);
+}
 
 TEST test_BuildHull_EmptyVectorPassed_HullEmpty(){
 	MockPointCollectionBuilder mockBuilder;
 	std::vector <Point2D> points;
 
-	GiftWrappingAlgorithm::buildHull(points, mockBuilder);
+	build_hull(points, mockBuilder);
 
 	ASSERT(mockBuilder.points.empty(), "Fail.");
 }
@@ -15,7 +20,7 @@ TEST test_BuildHull_OneElement_HullContainsOneElement(){
 	MockPointCollectionBuilder mockBuilder;
 	std::vector <Point2D> points = {Point2D(1., 2.)};
 
-	GiftWrappingAlgorithm::buildHull(points, mockBuilder);
+	build_hull(points, mockBuilder);
 
 	ASSERT(mockBuilder.points.size() == 1, "Fail.");
 }
@@ -26,7 +31,7 @@ TEST test_BuildHull_TwoElements_HullContainsTwoElements(){
 		Point2D(1., 2.), Point2D(2., 2.)
 	};
 
-	GiftWrappingAlgorithm::buildHull(points, mockBuilder);
+	build_hull(points, mockBuilder);
 
 	ASSERT(mockBuilder.points.size() == 2, "Fail.");
 }
@@ -39,7 +44,7 @@ TEST test_BuildHull_ThreeElements_HullContainsThreeElements(){
 		Point2D(2., 3.)
 	};
 
-	GiftWrappingAlgorithm::buildHull(points, mockBuilder);
+	build_hull(points, mockBuilder);
 
 	ASSERT(mockBuilder.points.size() == 3, "Fail.");
 }
@@ -54,7 +59,7 @@ TEST test_BuildHull_AllElementsOnAHull_HullContainsAllElements(){
 		Point2D(0., 2.)
 	};
 
-	GiftWrappingAlgorithm::buildHull(points, mockBuilder);
+	build_hull(points, mockBuilder);
 
 	ASSERT(mockBuilder.points.size() == 5, "Fail. Got %d, want %d", mockBuilder.points.size(), points.size());
 }
@@ -69,7 +74,7 @@ TEST test_BuildHull_OneElementInsideull_HullSizeIsLessThanPointsSizeByOne(){
 		Point2D(0., 2.)
 	};
 
-	GiftWrappingAlgorithm::buildHull(points, mockBuilder);
+	build_hull(points, mockBuilder);
 
 	ASSERT(mockBuilder.points.size() == points.size() - 1, "Fail. Got %d, want %d", mockBuilder.points.size(), points.size() - 1);
 }
@@ -91,7 +96,7 @@ TEST test_BuildHull_ManyElementsInsideull_HullSizeIsCorrect(){
 		Point2D(1.2, 1.2)
 	};
 
-	GiftWrappingAlgorithm::buildHull(points, mockBuilder);
+	build_hull(points, mockBuilder);
 
 	ASSERT(mockBuilder.points.size() == 4, "Fail. Got %d, want %d", mockBuilder.points.size(), 4);
 }
@@ -108,7 +113,7 @@ TEST test_BuildHull_FirstElementIsLeftmost_HullSizeIsCorrect(){
 		Point2D(1., 1.)
 	};
 
-	GiftWrappingAlgorithm::buildHull(points, mockBuilder);
+	build_hull(points, mockBuilder);
 
 	ASSERT(mockBuilder.points.size() == 4, "Fail. Got %d, want %d", mockBuilder.points.size(), 4);
 }
@@ -131,7 +136,7 @@ TEST test_FindHull_FirstElementIsLeftmost_HullIsCorrect(){
 		p1, p4, p3, p2
 	};
 
-	GiftWrappingAlgorithm::buildHull(points, mockBuilder);
+	build_hull(points, mockBuilder);
 
 	ASSERT(mockBuilder.points == expected, "Fail.");
 }

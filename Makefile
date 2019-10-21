@@ -17,7 +17,6 @@ test_point: test/geometry/test_point.o
 	$(TEST_FLAGS)	
 	$(TEST_DEST)/test_point
 
-
 test_point_collection: test/geometry/test_point_collection.o src/geometry/point.o
 	$(CC) test/geometry/test_point_collection.o src/geometry/point.o \
 	-o $(TEST_DEST)/test_point_collection \
@@ -47,6 +46,7 @@ unit:
 	make test_point_collection
 	make test_vector
 	make test_gift_wrapping
+	make test_graham_scan
 	
 clean:
 	rm -f *.o

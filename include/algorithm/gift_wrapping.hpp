@@ -7,9 +7,12 @@
 #include "geometry/point_collection.hpp"
 #include "geometry/vector.hpp"
 
-class GiftWrappingAlgorithm {
+#include "algorithm/hull_algorithm.hpp"
+
+class GiftWrappingAlgorithm : public HullAlgorithm {
 public:
-	static void buildHull(const std::vector <Point2D> &points, PointCollectionBuilder &builder);
+	GiftWrappingAlgorithm() = default;
+	void buildHull(const std::vector <Point2D> &points, PointCollectionBuilder &builder);
 
 private:
 	static bool isDegeneratedCase(const std::vector<Point2D> &points);
