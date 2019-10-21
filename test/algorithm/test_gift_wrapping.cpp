@@ -1,6 +1,6 @@
 #include <ctestie.h>
-#include "./utils.h"
 #include "../src/algorithm/gift_wrapping.cpp"
+#include "utils.hpp"
 
 TEST test_BuildHull_EmptyVectorPassed_HullEmpty(){
 	MockPointCollectionBuilder mockBuilder;

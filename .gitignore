@@ -1,4 +1,5 @@
 bin
+obj
 .settings
 .project
 .cproject
