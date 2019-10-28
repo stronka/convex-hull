@@ -147,6 +147,10 @@ TEST test_BuildHull_PointInsideHullPassed_HullDoesNotContainPoint(){
 	std::vector <Point2D> expected = {p1, p2, p3, p4};
 
 	build_hull(points, mockBuilder);
+//
+//	for (auto &p : mockBuilder.points){
+//		std::cout << p << std::endl;
+//	}
 
 	ASSERT(mockBuilder.points == expected, "Fail.");
 }

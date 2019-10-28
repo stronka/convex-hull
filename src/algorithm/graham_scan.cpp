@@ -1,6 +1,7 @@
 #include "algorithm/graham_scan.hpp"
 #include <algorithm>
 #include <math.h>
+#include <deque>
 
 void GrahamScanAlgorithm::buildHull(const std::vector <Point2D> &points, PointCollectionBuilder &builder){
 	if (isDegeneratedCase(points)){
@@ -13,6 +14,22 @@ void GrahamScanAlgorithm::buildHull(const std::vector <Point2D> &points, PointCo
 	sorter.setOrigin(find_lowest_y_point(sorted));
 	sorter.sort(sorted);
 
+	std::deque <Point2D> stack;
+
+	for (auto &p : sorted){
+		std::cout << p << std::endl;
+	}
+
+	for (auto &p : sorted){
+		while (stack.size() > 1 and ccw(stack[1], stack[0], p) < 0){
+			stack.pop_front();
+		}
+		stack.push_front(p);
+	}
+
+	for (auto &p : stack){
+		builder.addPoint(p);
+	}
 }
 
 bool GrahamScanAlgorithm::isDegeneratedCase(const std::vector <Point2D> &points) const {
@@ -41,10 +58,10 @@ bool PointPolarAngleSorter::ComparePointsAngle::operator ()(Point2D p1, Point2D 
 	Vector2D v1(origin, p1);
 	Vector2D v2(origin, p2);
 
-	if (v1.calculateTurnAngle(v2) > M_PI){
-		return true;
-	} else {
+	if (v1.calculateTurnAngle(v2) < M_PI or origin.getDistance(p2) < 1e-6){
 		return false;
+	} else {
+		return true;
 	}
 }
 
