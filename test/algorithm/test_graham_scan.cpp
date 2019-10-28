@@ -34,6 +34,36 @@ TEST test_FindLowestYPoint_UnorderedPoints_ReturnCorrectPointer(){
 	ASSERT(actual->getDistance(p3) < 1e-3, "Fail.");
 }
 
+TEST test_ccw_CounterClockwiseTurn_ReturnNegativeOne(){
+	Point2D p1(0., 0.);
+	Point2D p2(1., 0.);
+	Point2D p3(1., 1.);
+
+	int actual = ccw(p1, p2, p3);
+
+	ASSERT(actual == -1, "Fail.");
+}
+
+TEST test_ccw_NoTurn_ReturnZero(){
+	Point2D p1(0., 0.);
+	Point2D p2(1., 0.);
+	Point2D p3(2., 0.);
+
+	int actual = ccw(p1, p2, p3);
+
+	ASSERT(actual == 0, "Fail.");
+}
+
+TEST test_ccw_ClockwiseTurn_ReturnOne(){
+	Point2D p1(0., 0.);
+	Point2D p2(1., 0.);
+	Point2D p3(1., -1.);
+
+	int actual = ccw(p1, p2,p3);
+
+	ASSERT(actual == 1, "Fail.");
+}
+
 void build_hull(const std::vector <Point2D> &points, PointCollectionBuilder &builder){
 	GrahamScanAlgorithm algorithm;
 	algorithm.buildHull(points, builder);
@@ -125,6 +155,9 @@ TEST test_BuildHull_PointInsideHullPassed_HullDoesNotContainPoint(){
 RUN(
 		test_PointSorterSortPoints_UnorderedPoints_SortByPolarAngle,
 		test_FindLowestYPoint_UnorderedPoints_ReturnCorrectPointer,
+		test_ccw_CounterClockwiseTurn_ReturnNegativeOne,
+		test_ccw_NoTurn_ReturnZero,
+		test_ccw_ClockwiseTurn_ReturnOne,
 		test_BuildHull_EmptyVectorPassed_HullEmpty,
 		test_BuildHull_OnePointVectorPassed_HullSizeIsOne,
 		test_BuildHull_TwoPointVectorPassed_HullSizeIsTwo,

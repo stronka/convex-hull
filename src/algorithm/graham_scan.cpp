@@ -59,3 +59,18 @@ Point2D *find_lowest_y_point(std::vector <Point2D> points){
 
 	return lowest;
 };
+
+int ccw(Point2D &p1, Point2D &p2, Point2D &p3){
+	Vector2D v1(p1, p2);
+	Vector2D v2(p2, p3);
+
+	const double angle = v1.calculateTurnAngle(v2);
+
+	if (angle > M_PI){
+		return 1;
+	} else if (angle < M_PI) {
+		return -1;
+	} else {
+		return 0;
+	}
+}

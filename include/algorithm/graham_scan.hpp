@@ -8,6 +8,7 @@
 #include "algorithm/hull_algorithm.hpp"
 
 Point2D *find_lowest_y_point(std::vector <Point2D> points);
+int ccw(Point2D &p1, Point2D &p2, Point2D &p3);
 
 class PointPolarAngleSorter {
 public:
