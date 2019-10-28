@@ -7,16 +7,18 @@
 
 #include "algorithm/hull_algorithm.hpp"
 
-Point2D *find_lowest_y_point(std::vector <Point2D> points);
+Point2D *find_leftmost_lowest_y_point(std::vector <Point2D> points);
 int ccw(Point2D &p1, Point2D &p2, Point2D &p3);
 
 class PointPolarAngleSorter {
 public:
-	PointPolarAngleSorter() = default;
-	void setOrigin(const Point2D *p0);
+	PointPolarAngleSorter() : origin() {};
+	void setOrigin(Point2D p0);
 	void sort(std::vector <Point2D> &points) const;
 private:
-	const Point2D *origin = NULL;
+	Point2D origin;
+
+	void filterCollinear(std::vector<Point2D> &points) const;
 
 	class ComparePointsAngle {
 	public:

@@ -12,15 +12,34 @@ TEST test_PointSorterSortPoints_UnorderedPoints_SortByPolarAngle(){
 	Point2D p4(2., 2.);
 
 	std::vector <Point2D> points = {p1, p2, p3, p4};
-	std::vector <Point2D> expected = {p1, p3, p4, p2};
+	std::vector <Point2D> expected = {p1, p2, p4, p3};
 
-	s.setOrigin(&p1);
+	s.setOrigin(p1);
 	s.sort(points);
 
 	ASSERT(points == expected, "Fail.");
 }
 
-TEST test_FindLowestYPoint_UnorderedPoints_ReturnCorrectPointer(){
+TEST test_PointSorterSortPoints_CollinearPoints_DropCollinear(){
+	PointPolarAngleSorter s;
+
+	Point2D p1(0., 0.);
+	Point2D p2(1., 0.);
+	Point2D p3(0., 1.);
+	Point2D p4(2., 2.);
+	Point2D p5(1., 1.);
+	Point2D p6(.5, .5);
+
+	std::vector <Point2D> points = {p1, p2, p3, p4, p5, p6};
+	std::vector <Point2D> expected = {p1, p2, p4, p3};
+
+	s.setOrigin(p1);
+	s.sort(points);
+
+	ASSERT(points == expected, "Fail.");
+}
+
+TEST test_FindLeftmostLowestYPoint_UnorderedPoints_ReturnCorrectPointer(){
 
 	Point2D p1(0., 0.);
 	Point2D p2(1., 0.);
@@ -29,9 +48,27 @@ TEST test_FindLowestYPoint_UnorderedPoints_ReturnCorrectPointer(){
 
 	std::vector <Point2D> points = {p1, p2, p3, p4};
 
-	Point2D *actual = find_lowest_y_point(points);
+	Point2D *actual = find_leftmost_lowest_y_point(points);
 
 	ASSERT(actual->getDistance(p3) < 1e-3, "Fail.");
+}
+
+TEST test_FindLeftmostLowestYPoint_UnorderedPointsManyOnBottom_ReturnCorrectPointer(){
+
+	Point2D p1(0., 0.);
+	Point2D p2(1., 0.);
+	Point2D p3(-1., -1.);
+	Point2D p4(0., -1.);
+	Point2D p5(0.1, -1.);
+	Point2D p6(0.2, -1.);
+	Point2D p7(-1.3, -1.);
+	Point2D p8(2., 2.);
+
+	std::vector <Point2D> points = {p1, p2, p3, p4, p5, p6, p7, p8};
+
+	Point2D *actual = find_leftmost_lowest_y_point(points);
+
+	ASSERT(actual->getDistance(p7) < 1e-3, "Fail.");
 }
 
 TEST test_ccw_CounterClockwiseTurn_ReturnNegativeOne(){
@@ -147,10 +184,32 @@ TEST test_BuildHull_PointInsideHullPassed_HullDoesNotContainPoint(){
 	std::vector <Point2D> expected = {p1, p2, p3, p4};
 
 	build_hull(points, mockBuilder);
-//
-//	for (auto &p : mockBuilder.points){
-//		std::cout << p << std::endl;
-//	}
+
+
+	ASSERT(mockBuilder.points == expected, "Fail.");
+}
+
+TEST test_BuildHull_GeneralHullExample_HullIsCorrect(){
+	MockPointCollectionBuilder mockBuilder;
+
+	Point2D p1(-1., -1.);
+	Point2D p2(1., -1.);
+	Point2D p3(1., 1.);
+	Point2D p4(0., 1.);
+	Point2D p5(-1., 1.);
+
+	Point2D p6(0., 0.);
+	Point2D p7(0.1, 0.);
+	Point2D p8(0.1, 0.1);
+	Point2D p9(0.1, -0.1);
+	Point2D p10(0.5, -0.1);
+	Point2D p11(-0.7, -0.1);
+	Point2D p12(-0.7, .9);
+
+	std::vector <Point2D> points = {p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12};
+	std::vector <Point2D> expected = {p1, p2, p3, p4, p5};
+
+	build_hull(points, mockBuilder);
 
 	ASSERT(mockBuilder.points == expected, "Fail.");
 }
@@ -158,7 +217,9 @@ TEST test_BuildHull_PointInsideHullPassed_HullDoesNotContainPoint(){
 
 RUN(
 		test_PointSorterSortPoints_UnorderedPoints_SortByPolarAngle,
-		test_FindLowestYPoint_UnorderedPoints_ReturnCorrectPointer,
+		test_PointSorterSortPoints_CollinearPoints_DropCollinear,
+		test_FindLeftmostLowestYPoint_UnorderedPoints_ReturnCorrectPointer,
+		test_FindLeftmostLowestYPoint_UnorderedPointsManyOnBottom_ReturnCorrectPointer,
 		test_ccw_CounterClockwiseTurn_ReturnNegativeOne,
 		test_ccw_NoTurn_ReturnZero,
 		test_ccw_ClockwiseTurn_ReturnOne,
@@ -166,7 +227,8 @@ RUN(
 		test_BuildHull_OnePointVectorPassed_HullSizeIsOne,
 		test_BuildHull_TwoPointVectorPassed_HullSizeIsTwo,
 		test_BuildHull_ThreePointVectorPassed_HullSizeIsThree,
-//		test_BuildHull_FourPointVectorPassed_HullSizeIsFour,
-		test_BuildHull_PointInsideHullPassed_HullDoesNotContainPoint
+		test_BuildHull_FourPointVectorPassed_HullSizeIsFour,
+		test_BuildHull_PointInsideHullPassed_HullDoesNotContainPoint,
+		test_BuildHull_GeneralHullExample_HullIsCorrect
 );
 
