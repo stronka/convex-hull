@@ -7,11 +7,33 @@
 
 #include "algorithm/hull_algorithm.hpp"
 
-class GrahamScanAlgorithm : public HullAlgorithm {
+class PointPolarAngleSorter {
 public:
-	GrahamScanAlgorithm() = default;
-	void buildHull(const std::vector <Point2D> &points, PointCollectionBuilder &builder);
+	PointPolarAngleSorter() = default;
+	void setOrigin(const Point2D *p0);
+	void sort(std::vector <Point2D> &points) const;
+private:
+	const Point2D *origin = NULL;
+
+	class ComparePointsAngle {
+	public:
+		ComparePointsAngle(Point2D p0) : origin(p0) {};
+		bool operator()(Point2D p1, Point2D p2) const;
+	private:
+		Point2D origin;
+	};
 };
 
+class GrahamScanAlgorithm : public HullAlgorithm {
+public:
+	GrahamScanAlgorithm() : sorter(PointPolarAngleSorter()) {};
+	void buildHull(const std::vector <Point2D> &points, PointCollectionBuilder &builder);
+
+private:
+	PointPolarAngleSorter sorter;
+
+	bool isDegeneratedCase(const std::vector <Point2D> &points) const;
+	void buildDegeneratedHull(const std::vector<Point2D> &points, PointCollectionBuilder &builder) const;
+};
 
 #endif /* INCLUDE_ALGORITHM_GRAHAM_SCAN_HPP_ */
