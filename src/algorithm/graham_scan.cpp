@@ -5,9 +5,13 @@
 void GrahamScanAlgorithm::buildHull(const std::vector <Point2D> &points, PointCollectionBuilder &builder){
 	if (isDegeneratedCase(points)){
 		buildDegeneratedHull(points, builder);
+		return;
 	}
 
 	std::vector <Point2D> sorted = points;
+
+	sorter.setOrigin(find_lowest_y_point(sorted));
+	sorter.sort(sorted);
 
 }
 
@@ -43,3 +47,15 @@ bool PointPolarAngleSorter::ComparePointsAngle::operator ()(Point2D p1, Point2D 
 		return false;
 	}
 }
+
+Point2D *find_lowest_y_point(std::vector <Point2D> points){
+	Point2D *lowest = &points[0];
+
+	for (auto &p : points){
+		if (p.getY() < lowest->getY()){
+			lowest = &p;
+		}
+	}
+
+	return lowest;
+};

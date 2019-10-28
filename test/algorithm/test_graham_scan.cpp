@@ -17,13 +17,22 @@ TEST test_PointSorterSortPoints_UnorderedPoints_SortByPolarAngle(){
 	s.setOrigin(&p1);
 	s.sort(points);
 
-	for (auto &p : points){
-		std::cout << p << std::endl;
-	}
-
 	ASSERT(points == expected, "Fail.");
 }
 
+TEST test_FindLowestYPoint_UnorderedPoints_ReturnCorrectPointer(){
+
+	Point2D p1(0., 0.);
+	Point2D p2(1., 0.);
+	Point2D p3(0., -1.);
+	Point2D p4(2., 2.);
+
+	std::vector <Point2D> points = {p1, p2, p3, p4};
+
+	Point2D *actual = find_lowest_y_point(points);
+
+	ASSERT(actual->getDistance(p3) < 1e-3, "Fail.");
+}
 
 void build_hull(const std::vector <Point2D> &points, PointCollectionBuilder &builder){
 	GrahamScanAlgorithm algorithm;
@@ -115,11 +124,12 @@ TEST test_BuildHull_PointInsideHullPassed_HullDoesNotContainPoint(){
 
 RUN(
 		test_PointSorterSortPoints_UnorderedPoints_SortByPolarAngle,
+		test_FindLowestYPoint_UnorderedPoints_ReturnCorrectPointer,
 		test_BuildHull_EmptyVectorPassed_HullEmpty,
 		test_BuildHull_OnePointVectorPassed_HullSizeIsOne,
 		test_BuildHull_TwoPointVectorPassed_HullSizeIsTwo,
-		test_BuildHull_ThreePointVectorPassed_HullSizeIsThree
+		test_BuildHull_ThreePointVectorPassed_HullSizeIsThree,
 //		test_BuildHull_FourPointVectorPassed_HullSizeIsFour,
-//		test_BuildHull_PointInsideHullPassed_HullDoesNotContainPoint
+		test_BuildHull_PointInsideHullPassed_HullDoesNotContainPoint
 );
 
